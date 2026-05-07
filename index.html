@@ -430,6 +430,50 @@ section{position:relative;z-index:1;padding:100px 40px;}
 .rules-fn p{font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:rgba(245,230,200,.42);text-transform:uppercase;}
 .rules-fn a{color:var(--gold);text-decoration:none;}
 
+/* ===== MODS SECTION ===== */
+#mods{max-width:900px;margin:0 auto;padding:80px 40px;}
+.mods-toggle-wrapper{text-align:center;margin-top:48px;}
+#mods-section{max-height:0;overflow:hidden;transition:max-height 1s cubic-bezier(.4,0,.2,1),opacity .5s ease;opacity:0;margin-top:28px;}
+#mods-section.open{max-height:2000px;opacity:1;}
+.mods-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;padding:8px 0;}
+.mod-card{
+  background:rgba(8,16,8,.7);border:1px solid rgba(74,124,47,.25);
+  padding:24px 22px;display:flex;flex-direction:column;gap:12px;
+  transition:border-color .3s,box-shadow .3s;
+}
+.mod-card:hover{border-color:rgba(0,210,106,.45);box-shadow:0 0 28px rgba(0,210,106,.07);}
+.mod-card-top{display:flex;align-items:center;gap:14px;}
+.mod-icon{
+  width:44px;height:44px;background:rgba(74,124,47,.15);
+  border:1px solid rgba(74,124,47,.3);
+  display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;
+}
+.mod-info{flex:1;}
+.mod-name{font-family:'Cinzel',serif;font-size:14px;font-weight:700;color:var(--cream);letter-spacing:1px;margin-bottom:3px;}
+.mod-version{font-family:'Courier New',monospace;font-size:10px;color:rgba(0,210,106,.6);letter-spacing:1px;}
+.mod-desc{font-size:14px;color:rgba(245,230,200,.55);line-height:1.6;}
+.mod-tags{display:flex;gap:7px;flex-wrap:wrap;}
+.mod-tag{
+  font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;text-transform:uppercase;
+  padding:3px 9px;border:1px solid rgba(74,124,47,.35);color:rgba(0,210,106,.7);
+  background:rgba(0,210,106,.05);
+}
+.mod-tag.req{border-color:rgba(240,192,64,.35);color:rgba(240,192,64,.8);background:rgba(240,192,64,.05);}
+.mod-download{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--emerald);border:1px solid rgba(0,210,106,.3);
+  padding:8px 16px;background:rgba(0,210,106,.05);
+  text-decoration:none;transition:all .3s;margin-top:4px;align-self:flex-start;cursor:pointer;
+}
+.mod-download:hover{background:rgba(0,210,106,.12);border-color:rgba(0,210,106,.6);box-shadow:0 0 14px rgba(0,210,106,.15);}
+.mods-note{
+  margin-top:24px;padding:16px 20px;
+  background:rgba(240,192,64,.05);border:1px solid rgba(240,192,64,.2);
+  font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;
+  color:rgba(240,192,64,.6);text-align:center;text-transform:uppercase;
+}
+
 /* ===== FOOTER ===== */
 footer{position:relative;z-index:1;text-align:center;padding:64px 40px;border-top:1px solid rgba(74,124,47,.2);background:rgba(4,8,4,.92);}
 .footer-goat{font-size:28px;display:block;margin-bottom:12px;animation:goatSway 3s ease-in-out infinite;}
@@ -548,6 +592,7 @@ footer{position:relative;z-index:1;text-align:center;padding:64px 40px;border-to
   <ul class="nav-links">
     <li><a href="#info">Сервер</a></li>
     <li><a href="#features">Особенности</a></li>
+    <li><a href="#mods">🧩 Моды</a></li>
     <li><a href="#goat-section">🐐 Козёл</a></li>
     <li><a href="#rules" class="rules-btn">📜 Правила</a></li>
     <li><a href="https://t.me/kozlocraft" target="_blank">Telegram</a></li>
@@ -737,6 +782,66 @@ footer{position:relative;z-index:1;text-align:center;padding:64px 40px;border-to
       <span class="feature-emoji">🎨</span>
       <div class="feature-name">Донат-косметика</div>
       <div class="feature-note">без p2w</div>
+    </div>
+    <div class="feature-item">
+      <span class="feature-emoji">🎙️</span>
+      <div class="feature-name">Голосовой чат</div>
+      <div class="feature-note">мод</div>
+    </div>
+  </div>
+</section>
+
+<!-- =========== MODS =========== -->
+<section id="mods">
+  <h2 class="section-title fade-in">Моды сервера</h2>
+  <div class="section-divider fade-in">
+    <div class="divider-line"></div><div class="divider-gem"></div><div class="divider-line"></div>
+  </div>
+  <div class="mods-toggle-wrapper fade-in">
+    <button class="btn btn-rules" id="mods-toggle-btn" onclick="toggleMods()">
+      <span>🧩 Открыть список модов</span>
+    </button>
+  </div>
+  <div id="mods-section">
+    <div class="mods-grid">
+
+      <div class="mod-card fade-in">
+        <div class="mod-card-top">
+          <div class="mod-icon">🎙️</div>
+          <div class="mod-info">
+            <div class="mod-name">Simple Voice Chat</div>
+            <div class="mod-version">v2.6.17 · 1.21.11</div>
+          </div>
+        </div>
+        <div class="mod-desc">Голосовой чат прямо в игре. Говори с игроками рядом — слышимость зависит от расстояния, как в реальной жизни.</div>
+        <div class="mod-tags">
+          <span class="mod-tag req">⚠ Обязателен</span>
+          <span class="mod-tag">Fabric</span>
+          <span class="mod-tag">Клиент + Сервер</span>
+        </div>
+        <a class="mod-download" href="voicechat-fabric-1.21.11-2.6.17.jar" download>⬇ Скачать мод</a>
+      </div>
+
+      <div class="mod-card fade-in">
+        <div class="mod-card-top">
+          <div class="mod-icon">⚙️</div>
+          <div class="mod-info">
+            <div class="mod-name">Fabric API</div>
+            <div class="mod-version">v0.141.3 · 1.21.11</div>
+          </div>
+        </div>
+        <div class="mod-desc">Обязательная библиотека для работы всех Fabric-модов. Без неё моды не запустятся.</div>
+        <div class="mod-tags">
+          <span class="mod-tag req">⚠ Обязателен</span>
+          <span class="mod-tag">Fabric</span>
+          <span class="mod-tag">Зависимость</span>
+        </div>
+        <a class="mod-download" href="fabric-api-0.141.3+1.21.11.jar" download>⬇ Скачать мод</a>
+      </div>
+
+    </div>
+    <div class="mods-note">
+      ⚠ Все моды нужно установить в папку .minecraft/mods · Версия Minecraft: 1.21.11 · Загрузчик: Fabric
     </div>
   </div>
 </section>
@@ -1069,6 +1174,15 @@ function toast(msg){
   const t=document.getElementById('toast');
   t.textContent=msg; t.classList.add('show');
   setTimeout(()=>t.classList.remove('show'),2700);
+}
+
+/* ======= MODS TOGGLE ======= */
+function toggleMods(){
+  const s=document.getElementById('mods-section');
+  const b=document.getElementById('mods-toggle-btn');
+  const open=s.classList.toggle('open');
+  b.querySelector('span').textContent=open?'✕ Свернуть моды':'🧩 Открыть список модов';
+  if(open) setTimeout(()=>s.scrollIntoView({behavior:'smooth',block:'nearest'}),120);
 }
 
 /* ======= RULES TOGGLE ======= */
