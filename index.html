@@ -474,6 +474,49 @@ section{position:relative;z-index:1;padding:100px 40px;}
   color:rgba(240,192,64,.6);text-align:center;text-transform:uppercase;
 }
 
+/* ===== PRIVACY POLICY ===== */
+.privacy-toggle-wrap{text-align:center;margin-bottom:24px;}
+.privacy-btn{
+  background:none;border:none;cursor:pointer;
+  font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;
+  color:rgba(245,230,200,.35);transition:color .3s;padding:6px 0;
+}
+.privacy-btn:hover{color:rgba(245,230,200,.7);}
+.privacy-btn::before{content:'📄 ';}
+#privacy-section{
+  max-height:0;overflow:hidden;
+  transition:max-height 1s cubic-bezier(.4,0,.2,1),opacity .5s ease;
+  opacity:0;margin-bottom:0;
+}
+#privacy-section.open{max-height:4000px;opacity:1;margin-bottom:32px;}
+.privacy-body{
+  max-width:760px;margin:0 auto;
+  background:rgba(8,16,8,.7);border:1px solid rgba(74,124,47,.2);
+  padding:36px 40px;text-align:left;
+}
+.privacy-body h2{
+  font-family:'Cinzel',serif;font-size:16px;font-weight:700;
+  color:var(--emerald);letter-spacing:3px;text-transform:uppercase;
+  margin:28px 0 10px;border-bottom:1px solid rgba(74,124,47,.25);padding-bottom:8px;
+}
+.privacy-body h2:first-child{margin-top:0;}
+.privacy-body h3{
+  font-family:'Cinzel',serif;font-size:12px;font-weight:600;
+  color:rgba(245,230,200,.6);letter-spacing:2px;text-transform:uppercase;
+  margin:18px 0 6px;
+}
+.privacy-body p,.privacy-body li{
+  font-size:14px;color:rgba(245,230,200,.45);line-height:1.8;margin-bottom:6px;
+}
+.privacy-body ul{padding-left:18px;margin-bottom:10px;}
+.privacy-body li{list-style:disc;}
+.privacy-body .privacy-contact{
+  margin-top:24px;padding:14px 18px;
+  border:1px solid rgba(0,210,106,.2);background:rgba(0,210,106,.04);
+  font-family:'Cinzel',serif;font-size:11px;letter-spacing:1px;
+  color:rgba(0,210,106,.7);
+}
+
 /* ===== FOOTER ===== */
 footer{position:relative;z-index:1;text-align:center;padding:64px 40px;border-top:1px solid rgba(74,124,47,.2);background:rgba(4,8,4,.92);}
 .footer-goat{font-size:28px;display:block;margin-bottom:12px;animation:goatSway 3s ease-in-out infinite;}
@@ -708,7 +751,6 @@ footer{position:relative;z-index:1;text-align:center;padding:64px 40px;border-to
           <div class="online-label">Слотов</div>
         </div>
       </div>
-      <div class="card-badge badge-gold" style="margin-top:14px;">🖥 Версия сервера: 1.21.11</div>
     </div>
 
     <div class="card fade-in" style="transition-delay:.1s">
@@ -1101,6 +1143,72 @@ footer{position:relative;z-index:1;text-align:center;padding:64px 40px;border-to
 <footer>
   <div class="footer-goat">🐐</div>
   <div class="footer-logo">Kozlo<span>Craft</span></div>
+  <div class="privacy-toggle-wrap">
+    <button class="privacy-btn" onclick="togglePrivacy()">Политика конфиденциальности и Пользовательское соглашение</button>
+  </div>
+  <div id="privacy-section">
+    <div class="privacy-body">
+
+      <h2>Политика конфиденциальности</h2>
+
+      <h3>1. Общие положения</h3>
+      <p>Настоящая Политика регулирует порядок обработки, хранения и защиты информации, которую Пользователь предоставляет при использовании сервиса KozloCraft.</p>
+      <p>Используя Сервис, Пользователь подтверждает согласие с условиями настоящей Политики. Если Пользователь не согласен — он обязан прекратить использование Сервиса.</p>
+
+      <h3>2. Сбор информации</h3>
+      <p>Сервис может собирать следующие данные:</p>
+      <ul>
+        <li>идентификаторы аккаунта (логин, ID, никнейм и иные данные аккаунта);</li>
+        <li>техническую информацию (IP-адрес, браузер, устройство, операционная система);</li>
+        <li>историю взаимодействий с Сервисом;</li>
+        <li>информацию, необходимую для обработки обращений в поддержку.</li>
+      </ul>
+      <p>Сервис не требует предоставления паспортных данных или иной избыточной личной информации.</p>
+
+      <h3>3. Использование информации</h3>
+      <p>Полученная информация используется исключительно для обеспечения работы Сервиса, технической поддержки, связи с Пользователем, улучшения функционала и предотвращения нарушений.</p>
+
+      <h3>4. Передача информации третьим лицам</h3>
+      <p>Администрация не передаёт данные третьим лицам, за исключением случаев, предусмотренных законодательством, или когда Пользователь самостоятельно дал на это согласие.</p>
+
+      <h3>5. Хранение и защита данных</h3>
+      <p>Данные хранятся в течение срока, необходимого для достижения целей обработки. Администрация принимает разумные меры для защиты информации. Абсолютная безопасность передачи данных через интернет не может быть гарантирована.</p>
+
+      <h3>6. Отказ от ответственности</h3>
+      <p>Администрация не несёт ответственности за утрату или раскрытие данных, произошедшие по вине третьих лиц либо самого Пользователя.</p>
+
+      <h3>7. Изменения Политики</h3>
+      <p>Администрация вправе изменять настоящую Политику без предварительного уведомления. Продолжение использования Сервиса означает согласие с новой редакцией.</p>
+
+      <h2>Пользовательское соглашение</h2>
+
+      <h3>1. Общие положения</h3>
+      <p>Настоящее Соглашение регулирует отношения между Администрацией KozloCraft и Пользователем. Используя Сервис, Пользователь подтверждает согласие с его условиями.</p>
+
+      <h3>2. Права и обязанности Пользователя</h3>
+      <p>Пользователь обязуется:</p>
+      <ul>
+        <li>не нарушать законодательство;</li>
+        <li>не использовать Сервис для мошенничества, спама, взломов или вредоносного контента;</li>
+        <li>не предпринимать действий, нарушающих работу Сервиса;</li>
+        <li>предоставлять достоверные данные при необходимости.</li>
+      </ul>
+      <p>Пользователь несёт личную ответственность за безопасность своего аккаунта.</p>
+
+      <h3>3. Права Администрации</h3>
+      <p>Администрация вправе ограничивать или блокировать доступ при нарушении правил, изменять функционал и условия Соглашения, удалять контент или аккаунты, нарушающие правила.</p>
+
+      <h3>4. Ограничение ответственности</h3>
+      <p>Сервис предоставляется «как есть». Администрация не гарантирует бесперебойную работу и не несёт ответственности за сбои, потерю данных или действия третьих лиц.</p>
+
+      <h3>5. Заключительные положения</h3>
+      <p>Продолжение использования Сервиса означает согласие с актуальной версией Соглашения. Если отдельные положения будут признаны недействительными, остальные продолжают действовать.</p>
+
+      <div class="privacy-contact">📧 Поддержка: kozlocraft2@gmail.com</div>
+
+    </div>
+  </div>
+
   <div class="footer-tagline">Vanilla Minecraft Server</div>
   <div class="footer-links">
     <a href="#home">Главная</a>
@@ -1206,6 +1314,13 @@ document.querySelectorAll('a[href="#rules"]').forEach(a=>a.addEventListener('cli
   }
 },460)));
 
+/* ======= PRIVACY TOGGLE ======= */
+function togglePrivacy(){
+  const s=document.getElementById('privacy-section');
+  const open=s.classList.toggle('open');
+  if(open) setTimeout(()=>s.scrollIntoView({behavior:'smooth',block:'nearest'}),120);
+}
+
 /* ======= SCROLL OBSERVER ======= */
 const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible');}),{threshold:.12});
 document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
@@ -1301,19 +1416,5 @@ async function fetchServerOnline(){
 fetchServerOnline();
 setInterval(fetchServerOnline, 60000);
 </script>
-
-<!--Start of Tawk.to Script-->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/69fdcbc611568a1c347457e5/1jo3m7vo4';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-</script>
-<!--End of Tawk.to Script-->
 </body>
 </html>
