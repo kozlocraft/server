@@ -549,14 +549,154 @@ footer{position:relative;z-index:1;text-align:center;padding:64px 40px;border-to
 
 @media(max-width:640px){
   section{padding:70px 18px;}
-  #features,#goat-section,#rules{padding:70px 18px;}
+  #features,#goat-section,#rules,#donate{padding:70px 18px;}
   .hero-ip-box{padding:20px 24px;}
   .rules-body{padding:22px 18px;}
   .rule-item{flex-wrap:wrap;}
   .rule-severity{order:3;margin-top:6px;}
   .goat-block{padding:32px 20px;}
   nav{padding:0 18px;}
+  .donate-grid{grid-template-columns:1fr;}
+  .cosmetic-grid{grid-template-columns:1fr 1fr;}
 }
+
+/* ===== DONATE SECTION ===== */
+#donate{max-width:1100px;margin:0 auto;padding:100px 40px;}
+
+.donate-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:28px;
+  margin-bottom:64px;
+}
+
+.donate-card{
+  background:rgba(8,16,8,.78);
+  border:2px solid rgba(240,192,64,.25);
+  padding:36px 30px;
+  position:relative;overflow:hidden;
+  transition:all .35s ease;
+  backdrop-filter:blur(6px);
+}
+.donate-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--gold),var(--emerald),var(--gold));
+  opacity:0;transition:opacity .3s;
+}
+.donate-card:hover{
+  border-color:rgba(240,192,64,.6);
+  transform:translateY(-8px);
+  box-shadow:0 28px 70px rgba(0,0,0,.5),0 0 40px rgba(240,192,64,.1);
+}
+.donate-card:hover::before{opacity:1;}
+
+.donate-card-ribbon{
+  position:absolute;top:14px;right:-10px;
+  background:var(--emerald);
+  color:#000;font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;
+  text-transform:uppercase;padding:4px 18px 4px 12px;font-weight:700;
+  box-shadow:0 0 14px rgba(0,210,106,.4);
+}
+
+.donate-tier-icon{font-size:48px;margin-bottom:16px;display:block;filter:drop-shadow(0 0 16px rgba(240,192,64,.45));}
+.donate-tier-name{
+  font-family:'Cinzel',serif;font-size:20px;font-weight:900;
+  color:var(--gold);letter-spacing:3px;text-transform:uppercase;
+  text-shadow:2px 2px 0 #5a4400,0 0 24px rgba(240,192,64,.4);
+  margin-bottom:6px;
+}
+.donate-price{
+  font-family:'Cinzel',serif;font-size:32px;font-weight:900;
+  color:#fff;letter-spacing:1px;margin-bottom:4px;
+  text-shadow:0 0 20px rgba(255,255,255,.2);
+}
+.donate-price span{font-size:16px;color:rgba(245,230,200,.5);font-weight:400;letter-spacing:2px;}
+.donate-desc{
+  font-size:15px;color:rgba(245,230,200,.6);line-height:1.65;
+  margin:14px 0 20px;border-top:1px solid rgba(240,192,64,.1);padding-top:14px;
+}
+.donate-perks{list-style:none;margin-bottom:22px;display:flex;flex-direction:column;gap:8px;}
+.donate-perks li{
+  font-size:14px;color:rgba(245,230,200,.7);
+  display:flex;align-items:flex-start;gap:9px;line-height:1.5;
+}
+.donate-perks li::before{
+  content:'✦';color:var(--gold);font-size:10px;margin-top:3px;flex-shrink:0;
+  text-shadow:0 0 8px rgba(240,192,64,.6);
+}
+.donate-nowp2w{
+  display:inline-flex;align-items:center;gap:6px;
+  border:1px solid rgba(0,210,106,.3);color:var(--emerald);
+  background:rgba(0,210,106,.06);
+  font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;
+  padding:4px 12px;margin-bottom:18px;
+}
+.donate-btn{
+  display:block;width:100%;text-align:center;
+  font-family:'Cinzel',serif;font-size:11px;font-weight:700;
+  letter-spacing:3px;text-transform:uppercase;
+  border:2px solid var(--gold);color:var(--gold);
+  background:rgba(240,192,64,.06);
+  padding:13px 0;cursor:pointer;text-decoration:none;
+  transition:all .3s;position:relative;overflow:hidden;
+}
+.donate-btn::before{
+  content:'';position:absolute;inset:0;
+  background:var(--gold);transform:translateX(-101%);transition:transform .3s ease;
+}
+.donate-btn:hover::before{transform:translateX(0);}
+.donate-btn span{position:relative;z-index:1;}
+.donate-btn:hover span{color:#000;}
+
+/* COSMETICS SHOWCASE */
+.cosmetics-section{margin-top:0;}
+.cosmetics-title{
+  font-family:'Cinzel',serif;font-size:18px;font-weight:700;
+  color:var(--emerald);letter-spacing:3px;text-transform:uppercase;
+  text-align:center;margin-bottom:10px;
+  text-shadow:0 0 20px rgba(0,210,106,.3);
+}
+.cosmetics-sub{
+  text-align:center;font-size:15px;color:rgba(245,230,200,.45);
+  margin-bottom:32px;font-style:italic;letter-spacing:1px;
+}
+.cosmetic-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+  gap:14px;
+}
+.cosmetic-item{
+  background:rgba(8,16,8,.6);border:1px solid rgba(74,124,47,.2);
+  padding:22px 16px;text-align:center;
+  transition:all .3s;position:relative;overflow:hidden;
+}
+.cosmetic-item::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(0,210,106,.08),transparent);
+  opacity:0;transition:opacity .3s;
+}
+.cosmetic-item:hover{border-color:rgba(0,210,106,.4);transform:translateY(-4px);}
+.cosmetic-item:hover::after{opacity:1;}
+.cosmetic-emoji{font-size:32px;display:block;margin-bottom:8px;filter:drop-shadow(0 0 8px rgba(240,192,64,.3));}
+.cosmetic-name{
+  font-family:'Cinzel',serif;font-size:11px;font-weight:700;
+  color:var(--cream);letter-spacing:1px;text-transform:uppercase;margin-bottom:5px;
+}
+.cosmetic-note{font-size:12px;color:rgba(245,230,200,.38);font-style:italic;line-height:1.4;}
+.cosmetic-vanilla-badge{
+  display:inline-block;margin-top:7px;
+  font-family:'Cinzel',serif;font-size:8px;letter-spacing:1px;
+  color:rgba(0,210,106,.7);border:1px solid rgba(0,210,106,.25);
+  background:rgba(0,210,106,.05);padding:2px 8px;text-transform:uppercase;
+}
+.donate-note-box{
+  margin-top:40px;padding:20px 28px;text-align:center;
+  background:rgba(240,192,64,.04);border:1px solid rgba(240,192,64,.18);
+  font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;
+  color:rgba(245,230,200,.38);text-transform:uppercase;line-height:1.9;
+}
+.donate-note-box a{color:var(--gold);text-decoration:none;}
+.donate-note-box a:hover{text-shadow:0 0 10px rgba(240,192,64,.5);}
 </style>
 </head>
 <body>
@@ -637,6 +777,7 @@ footer{position:relative;z-index:1;text-align:center;padding:64px 40px;border-to
     <li><a href="#features">Особенности</a></li>
     <li><a href="#mods">🧩 Моды</a></li>
     <li><a href="#goat-section">🐐 Козёл</a></li>
+    <li><a href="#donate" style="color:var(--gold);">💎 Донат</a></li>
     <li><a href="#rules" class="rules-btn">📜 Правила</a></li>
     <li><a href="https://t.me/kozlocraft" target="_blank">Telegram</a></li>
   </ul>
@@ -1139,6 +1280,37 @@ footer{position:relative;z-index:1;text-align:center;padding:64px 40px;border-to
   </div>
 </section>
 
+<!-- =========== DONATE =========== -->
+<section id="donate">
+  <h2 class="section-title fade-in">Донат</h2>
+  <div class="section-divider fade-in">
+    <div class="divider-line"></div><div class="divider-gem"></div><div class="divider-line"></div>
+  </div>
+
+  <div class="donate-grid">
+
+    <!-- GADGETS PACK -->
+    <div class="donate-card fade-in">
+      <div class="donate-card-ribbon">Доступно</div>
+      <span class="donate-tier-icon">🎨</span>
+      <div class="donate-tier-name">Гаджеты</div>
+      <div class="donate-price">250 <span>руб.</span></div>
+      <div class="donate-nowp2w">✔ Не нарушает ванильку</div>
+      <p class="donate-desc">
+        Набор косметики с кучей прикольных штук — шляпы, плащи, эффекты частиц, кастомные питомцы и прочая мишура. Всё это чисто для красоты: никаких дополнительных крафтов, лута, урона или преимуществ над другими игроками. Ваниль остаётся ванилью — ты просто выглядишь круче.
+      </p>
+      <ul class="donate-perks">
+        <li>Уникальная шляпа над головой (выбор из нескольких вариантов)</li>
+        <li>Эффект частиц вокруг игрока (искры, листья, звёзды и др.)</li>
+      </ul>
+      <a href="#" class="donate-btn"><span>💎 Купить</span></a>
+    </div>
+
+  </div>
+
+
+</section>
+
 <!-- =========== FOOTER =========== -->
 <footer>
   <div class="footer-goat">🐐</div>
@@ -1214,6 +1386,7 @@ footer{position:relative;z-index:1;text-align:center;padding:64px 40px;border-to
     <a href="#home">Главная</a>
     <a href="#info">Сервер</a>
     <a href="#features">Особенности</a>
+    <a href="#donate">Донат</a>
     <a href="#goat-section">Козёл</a>
     <a href="#rules">Правила</a>
     <a href="https://t.me/kozlocraft" target="_blank">Telegram</a>
