@@ -888,9 +888,10 @@ footer{position:relative;z-index:1;text-align:center;padding:64px 40px;border-to
           <span class="shop-badge">✔ Без P2W</span>
           <span class="shop-badge" style="border-color:rgba(240,192,64,.4);color:var(--gold);background:rgba(240,192,64,.07);">💎 Уникально</span>
         </div>
-        <a href="https://kozlocraft.github.io/server/#" target="_blank" class="btn-shop">
+        <div style="font-family:'Cinzel',serif;font-size:32px;font-weight:900;color:var(--gold);text-shadow:2px 2px 0 #5a4400,0 0 24px rgba(240,192,64,.5);margin-bottom:20px;letter-spacing:1px;">250 ₽</div>
+        <button class="btn-shop" onclick="openPayModal()">
           <span>🛒 Купить гаджет</span>
-        </a>
+        </button>
       </div>
 
       <div class="shop-card fade-in" style="transition-delay:.12s">
@@ -903,15 +904,64 @@ footer{position:relative;z-index:1;text-align:center;padding:64px 40px;border-to
         <div class="shop-price-row">
           <span class="shop-badge">⭐ Поддержка сервера</span>
         </div>
-        <a href="https://kozlocraft.github.io/server/#" target="_blank" class="btn-shop">
-          <span>👑 Смотреть всё</span>
+        <a href="https://t.me/kozlocraft" target="_blank" class="btn-shop">
+          <span>👑 Написать в Telegram</span>
         </a>
       </div>
 
     </div>
-    <div class="shop-note">Способы оплаты и подробности — на странице магазина</div>
+    <div class="shop-note">Безопасная оплата · Platega · Карта / СБП</div>
   </div>
 </section>
+
+<!-- =========== PAY MODAL =========== -->
+<div id="pay-modal" style="display:none;position:fixed;inset:0;z-index:9000;align-items:center;justify-content:center;background:rgba(0,0,0,.78);backdrop-filter:blur(6px);">
+  <div style="background:#060e06;border:2px solid var(--gold);max-width:440px;width:90%;position:relative;box-shadow:0 0 60px rgba(240,192,64,.25),0 0 120px rgba(0,0,0,.8);">
+    <!-- corner accents -->
+    <div style="position:absolute;width:12px;height:12px;background:var(--gold);top:-2px;left:-2px;"></div>
+    <div style="position:absolute;width:12px;height:12px;background:var(--gold);bottom:-2px;right:-2px;"></div>
+    <!-- header -->
+    <div style="background:linear-gradient(135deg,rgba(240,192,64,.15),rgba(10,20,10,.9));padding:22px 28px;border-bottom:1px solid rgba(240,192,64,.25);display:flex;align-items:center;justify-content:space-between;">
+      <div>
+        <div style="font-family:'Cinzel',serif;font-size:16px;font-weight:900;color:var(--gold);letter-spacing:3px;text-transform:uppercase;">🛒 Оплата гаджетов</div>
+        <div style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:rgba(245,230,200,.4);text-transform:uppercase;margin-top:3px;">KozloCraft · Донат</div>
+      </div>
+      <button onclick="closePayModal()" style="background:none;border:none;cursor:pointer;font-size:22px;color:rgba(245,230,200,.4);line-height:1;padding:0 4px;transition:color .2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(245,230,200,.4)'">✕</button>
+    </div>
+    <!-- body -->
+    <div style="padding:28px 28px 22px;">
+      <!-- item row -->
+      <div style="display:flex;align-items:center;justify-content:space-between;background:rgba(240,192,64,.05);border:1px solid rgba(240,192,64,.2);padding:14px 18px;margin-bottom:22px;">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <span style="font-size:28px;">🎨</span>
+          <div>
+            <div style="font-family:'Cinzel',serif;font-size:13px;font-weight:700;color:var(--cream);letter-spacing:1px;">Донат-Гаджеты</div>
+            <div style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:rgba(0,210,106,.7);text-transform:uppercase;margin-top:2px;">✔ Без P2W · Косметика</div>
+          </div>
+        </div>
+        <div style="font-family:'Cinzel',serif;font-size:22px;font-weight:900;color:var(--gold);text-shadow:0 0 14px rgba(240,192,64,.5);">250 ₽</div>
+      </div>
+      <!-- nickname input -->
+      <label style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(245,230,200,.5);display:block;margin-bottom:8px;">Ник в Minecraft</label>
+      <input id="pay-nick" type="text" placeholder="Введи свой ник..." maxlength="32"
+        style="width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(240,192,64,.3);color:var(--cream);font-family:'Cinzel',serif;font-size:14px;letter-spacing:1px;padding:12px 14px;outline:none;transition:border-color .2s;box-sizing:border-box;margin-bottom:6px;"
+        onfocus="this.style.borderColor='rgba(240,192,64,.75)'" onblur="this.style.borderColor='rgba(240,192,64,.3)'"
+      />
+      <div id="pay-nick-err" style="font-family:'Cinzel',serif;font-size:10px;color:#ff4444;letter-spacing:1px;min-height:16px;margin-bottom:16px;"></div>
+      <!-- pay button -->
+      <button id="pay-btn" onclick="startPayment()" class="btn-shop" style="width:100%;justify-content:center;display:flex;font-size:14px;padding:16px;">
+        <span>💳 Оплатить 250 ₽</span>
+      </button>
+      <!-- methods -->
+      <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-top:16px;flex-wrap:wrap;">
+        <span style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:rgba(245,230,200,.28);text-transform:uppercase;">Способы оплаты:</span>
+        <span style="font-family:'Courier New',monospace;font-size:11px;color:rgba(245,230,200,.45);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);padding:2px 8px;">💳 Карта</span>
+        <span style="font-family:'Courier New',monospace;font-size:11px;color:rgba(245,230,200,.45);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);padding:2px 8px;">📱 СБП</span>
+      </div>
+      <div style="text-align:center;margin-top:10px;font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:rgba(245,230,200,.2);text-transform:uppercase;">Безопасная оплата через Platega</div>
+    </div>
+  </div>
+</div>
 
 <!-- =========== MODS =========== -->
 <section id="mods">
@@ -1495,6 +1545,72 @@ async function fetchServerOnline(){
 }
 fetchServerOnline();
 setInterval(fetchServerOnline, 60000);
+
+/* ======= PAY MODAL ======= */
+function openPayModal(){
+  const m = document.getElementById('pay-modal');
+  m.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+  setTimeout(()=>document.getElementById('pay-nick').focus(), 120);
+}
+function closePayModal(){
+  document.getElementById('pay-modal').style.display = 'none';
+  document.body.style.overflow = '';
+  document.getElementById('pay-nick-err').textContent = '';
+  document.getElementById('pay-nick').value = '';
+}
+document.getElementById('pay-modal').addEventListener('click', function(e){
+  if(e.target === this) closePayModal();
+});
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape') closePayModal();
+});
+
+async function startPayment(){
+  const nick = document.getElementById('pay-nick').value.trim();
+  const err  = document.getElementById('pay-nick-err');
+  const btn  = document.getElementById('pay-btn');
+
+  if(!nick){
+    err.textContent = '⚠ Введи свой ник в Minecraft';
+    return;
+  }
+  if(!/^[a-zA-Z0-9_]{3,16}$/.test(nick)){
+    err.textContent = '⚠ Ник: 3–16 символов, только буквы/цифры/_';
+    return;
+  }
+  err.textContent = '';
+  btn.querySelector('span').textContent = '⏳ Создаём счёт…';
+  btn.disabled = true;
+
+  try {
+    const res = await fetch('https://platega.io/api/create-invoice', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Api-Key': 'hAFO7DtmIX37tHsdafQm3j16S1gXe1fDrifVOJhvWNf5nYIukUPKyR1Azkrs45xgkHFWf000LdBnKCQ3YXjpW9XLw1QiLbq2JLI6'
+      }),
+      body: JSON.stringify({
+        merchant_id: 'e9de727e-0508-46a5-a4f6-2dff76086d5d',
+        amount: 250,
+        currency: 'RUB',
+        order_id: 'gadget-' + nick + '-' + Date.now(),
+        description: 'Донат-Гаджеты · KozloCraft · ' + nick,
+        customer: { username: nick }
+      })
+    });
+    const data = await res.json();
+    if(data && (data.payment_url || data.url || data.redirect_url)){
+      window.location.href = data.payment_url || data.url || data.redirect_url;
+    } else {
+      throw new Error('no_url');
+    }
+  } catch(e) {
+    btn.querySelector('span').textContent = '💳 Оплатить 250 ₽';
+    btn.disabled = false;
+    err.textContent = '⚠ Ошибка. Напиши нам в Telegram: @kozlocraft';
+  }
+}
 </script>
 </body>
 </html>
