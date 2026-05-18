@@ -297,7 +297,7 @@ section{position:relative;z-index:1;padding:100px 40px;}
   padding:34px 26px;position:relative;overflow:hidden;
   transition:all .4s ease;backdrop-filter:blur(5px);
 }
-.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--grass),var(--gold),var(--emerald));opacity:0;transition:opacity .3s;}
+.card::before{content:'Активно';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--grass),var(--gold),var(--emerald));opacity:0;transition:opacity .3s;}
 .card:hover{border-color:rgba(74,124,47,.75);transform:translateY(-6px);box-shadow:0 22px 55px rgba(0,0,0,.45),0 0 32px rgba(74,124,47,.1);}
 .card:hover::before{opacity:1;}
 .card-icon{font-size:38px;margin-bottom:14px;display:block;filter:drop-shadow(0 0 10px rgba(240,192,64,.4));}
@@ -992,6 +992,11 @@ footer{position:relative;z-index:1;text-align:center;padding:64px 40px;border-to
       <div class="feature-name">Голосовой чат</div>
       <div class="feature-note">мод</div>
     </div>
+    <div class="feature-item">
+      <span class="feature-emoji">📺</span>
+      <div class="feature-name">Просмотр видео</div>
+      <div class="feature-note">мод</div>
+    </div>
   </div>
 </section>
 
@@ -1146,6 +1151,17 @@ footer{position:relative;z-index:1;text-align:center;padding:64px 40px;border-to
           <div class="cmd-item"><span class="cmd-code">/emote</span> — список эмоций</div>
           <div class="cmd-item"><span class="cmd-code">/skin [ник]</span> — установить скин (clear - сброс)</div>
           <div class="cmd-item"><span class="cmd-code">/sit, /lay, /crawl</span> — сесть, лечь, ползти</div>
+        </div>
+      </div>
+
+      <div class="cmd-card">
+        <div class="cmd-header">
+          <span class="cmd-icon">🎮</span>
+          <div class="cmd-title">Развлечения</div>
+        </div>
+        <div class="cmd-list">
+          <div class="cmd-item"><span class="cmd-code">/tictactoe:ttt [ник]</span> — пригласить игрока в крестики-нолики</div>
+          <div class="cmd-item"><span class="cmd-code">/tictactoe:ttt accept</span> — принять приглашение на игру</div>
         </div>
       </div>
 
