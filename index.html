@@ -320,6 +320,26 @@ section{position:relative;z-index:1;padding:100px 40px;}
 .feature-name{font-family:'Cinzel',serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--grass-light);}
 .feature-note{font-size:12px;color:rgba(245,230,200,.38);margin-top:4px;font-style:italic;}
 
+/* ===== COMMANDS SECTION ===== */
+#commands { max-width: 1200px; margin: 0 auto; padding: 100px 40px; }
+.cmd-toggle-wrapper { text-align: center; margin-top: 20px; }
+#commands-section { max-height: 0; overflow: hidden; transition: max-height 1s cubic-bezier(.4,0,.2,1), opacity .5s ease; opacity: 0; }
+#commands-section.open { max-height: 5000px; opacity: 1; margin-top: 30px; }
+.cmd-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+.cmd-card { background: rgba(8,16,8,.75); border: 1px solid rgba(74,124,47,.25); padding: 26px 28px; transition: all .3s ease; box-shadow: 0 0 20px rgba(0,0,0,.4); }
+.cmd-card:hover { border-color: rgba(0,210,106,.45); box-shadow: 0 0 30px rgba(0,210,106,.08); transform: translateY(-3px); }
+.cmd-header { display: flex; align-items: center; gap: 14px; border-bottom: 1px solid rgba(74,124,47,.2); padding-bottom: 12px; margin-bottom: 16px; }
+.cmd-icon { font-size: 26px; filter: drop-shadow(0 0 10px rgba(240,192,64,.4)); }
+.cmd-title { font-family: 'Cinzel', serif; font-size: 16px; font-weight: 700; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; }
+.cmd-list { display: flex; flex-direction: column; gap: 12px; }
+.cmd-item { font-size: 15px; color: rgba(245,230,200,.7); }
+.cmd-code { font-family: 'Courier New', monospace; font-size: 13px; font-weight: bold; color: var(--emerald); background: rgba(0,210,106,.08); padding: 3px 8px; border: 1px solid rgba(0,210,106,.25); border-radius: 2px; }
+.cmd-desc-text { color: rgba(245,230,200,.55); font-size: 14px; margin-top: 14px; line-height: 1.6; }
+.cmd-skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin-top: 12px; }
+.cmd-skill-item { background: rgba(74,124,47,.08); padding: 10px 14px; border-left: 2px solid var(--grass-light); font-size: 13px; color: rgba(245,230,200,.6); line-height: 1.5; }
+.cmd-skill-item strong { color: var(--gold-light); display: block; margin-bottom: 4px; font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; }
+@media(max-width:640px){ .cmd-card { padding: 20px; } }
+
 /* ===== GOAT SECTION ===== */
 #goat-section{max-width:860px;margin:0 auto;padding:80px 40px;text-align:center;}
 .goat-block{
@@ -701,7 +721,7 @@ footer{position:relative;z-index:1;text-align:center;padding:64px 40px;border-to
 
 @media(max-width:640px){
   section{padding:70px 18px;}
-  #features,#goat-section,#rules{padding:70px 18px;}
+  #features,#commands,#goat-section,#rules{padding:70px 18px;}
   .hero-ip-box{padding:20px 24px;}
   .rules-body{padding:22px 18px;}
   .rule-item{flex-wrap:wrap;}
@@ -768,6 +788,7 @@ footer{position:relative;z-index:1;text-align:center;padding:64px 40px;border-to
   <ul class="nav-links">
     <li><a href="#info">Сервер</a></li>
     <li><a href="#features">Особенности</a></li>
+    <li><a href="#commands" style="color:var(--grass-light);">🧭 Навигация</a></li>
     <li><a href="#mods">🧩 Моды</a></li>
     <li><a href="#goat-section">🐐 Козёл</a></li>
     <li><a href="#shop" style="color:var(--gold);border-color:rgba(240,192,64,.25);">🛒 Магазин</a></li>
@@ -970,6 +991,183 @@ footer{position:relative;z-index:1;text-align:center;padding:64px 40px;border-to
       <span class="feature-emoji">🎙️</span>
       <div class="feature-name">Голосовой чат</div>
       <div class="feature-note">мод</div>
+    </div>
+  </div>
+</section>
+
+<section id="commands">
+  <h2 class="section-title fade-in">Навигация и Команды</h2>
+  <div class="section-divider fade-in">
+    <div class="divider-line"></div><div class="divider-gem"></div><div class="divider-line"></div>
+  </div>
+
+  <div class="cmd-toggle-wrapper fade-in">
+    <button class="btn btn-primary" id="cmds-toggle-btn" onclick="toggleCommands()">
+      <span>📖 Открыть справочник команд</span>
+    </button>
+  </div>
+
+  <div id="commands-section">
+    <div class="cmd-grid">
+
+      <div class="cmd-card">
+        <div class="cmd-header">
+          <span class="cmd-icon">🔐</span>
+          <div class="cmd-title">Регистрация</div>
+        </div>
+        <div class="cmd-list">
+          <div class="cmd-item"><span class="cmd-code">/register [пароль] [пароль]</span> — регистрация аккаунта</div>
+          <div class="cmd-item"><span class="cmd-code">/login [пароль]</span> — вход на сервер</div>
+          <div class="cmd-item"><span class="cmd-code">/changepassword [старый] [новый]</span> — сменить пароль</div>
+        </div>
+      </div>
+
+      <div class="cmd-card">
+        <div class="cmd-header">
+          <span class="cmd-icon">🏠</span>
+          <div class="cmd-title">Дома и Телепорты</div>
+        </div>
+        <div class="cmd-list">
+          <div class="cmd-item"><span class="cmd-code">/sethome</span> — установить точку дома</div>
+          <div class="cmd-item"><span class="cmd-code">/home</span> — телепорт домой</div>
+          <div class="cmd-item"><span class="cmd-code">/homes</span> — список домов</div>
+          <div class="cmd-item"><span class="cmd-code">/delhome</span> — удалить дом</div>
+          <div class="cmd-item"><span class="cmd-code">/warp</span> — список доступных варпов</div>
+        </div>
+      </div>
+
+      <div class="cmd-card">
+        <div class="cmd-header">
+          <span class="cmd-icon">💰</span>
+          <div class="cmd-title">Экономика</div>
+        </div>
+        <div class="cmd-list">
+          <div class="cmd-item"><span class="cmd-code">/bal</span> — посмотреть баланс</div>
+          <div class="cmd-item"><span class="cmd-code">/pay [ник] [сумма]</span> — перевести деньги игроку</div>
+          <div class="cmd-item"><span class="cmd-code">/bank</span> — открыть банк</div>
+          <div class="cmd-item"><span class="cmd-code">/bank deposit [сумма]</span> — положить деньги в банк</div>
+          <div class="cmd-item"><span class="cmd-code">/bank withdraw [сумма]</span> — снять деньги</div>
+        </div>
+      </div>
+
+      <div class="cmd-card">
+        <div class="cmd-header">
+          <span class="cmd-icon">🛒</span>
+          <div class="cmd-title">Торговля</div>
+        </div>
+        <div class="cmd-list">
+          <div class="cmd-item"><span class="cmd-code">/ah</span> — открыть аукцион</div>
+          <div class="cmd-item"><span class="cmd-code">/ah sell [цена]</span> — выставить предмет на продажу</div>
+          <div class="cmd-item"><span class="cmd-code">/ah expired</span> — забрать непроданные предметы</div>
+          <div class="cmd-item"><span class="cmd-code">/shop</span> — магазин сервера</div>
+        </div>
+      </div>
+
+      <div class="cmd-card">
+        <div class="cmd-header">
+          <span class="cmd-icon">💼</span>
+          <div class="cmd-title">Работы</div>
+        </div>
+        <div class="cmd-list">
+          <div class="cmd-item"><span class="cmd-code">/jobs</span> — список работ</div>
+          <div class="cmd-item"><span class="cmd-code">/jobs join [название]</span> — выбрать работу</div>
+          <div class="cmd-item"><span class="cmd-code">/jobs leave</span> — уйти с работы</div>
+          <div class="cmd-item"><span class="cmd-code">/jobs stats</span> — статистика работы</div>
+        </div>
+        <div class="cmd-desc-text">
+          💡 На работах можно зарабатывать деньги за: добычу руды, рубку деревьев, фермерство, убийство мобов, строительство и другое.
+        </div>
+      </div>
+
+      <div class="cmd-card">
+        <div class="cmd-header">
+          <span class="cmd-icon">👥</span>
+          <div class="cmd-title">Кланы</div>
+        </div>
+        <div class="cmd-list">
+          <div class="cmd-item"><span class="cmd-code">/clan create [название]</span> — создать клан</div>
+          <div class="cmd-item"><span class="cmd-code">/clan invite [ник]</span> — пригласить игрока</div>
+          <div class="cmd-item"><span class="cmd-code">/clan join [название]</span> — вступить в клан</div>
+          <div class="cmd-item"><span class="cmd-code">/clan leave</span> — выйти из клана</div>
+          <div class="cmd-item"><span class="cmd-code">/clan chat</span> — чат клана</div>
+        </div>
+      </div>
+
+      <div class="cmd-card" style="grid-column: 1 / -1;">
+        <div class="cmd-header">
+          <span class="cmd-icon">⚔️</span>
+          <div class="cmd-title">Навыки (AuraSkills)</div>
+        </div>
+        <div class="cmd-list" style="flex-direction: row; gap: 24px; flex-wrap: wrap;">
+          <div class="cmd-item"><span class="cmd-code">/skills</span> — меню навыков</div>
+          <div class="cmd-item"><span class="cmd-code">/skills top</span> — топ игроков по навыкам</div>
+        </div>
+        
+        <div class="cmd-desc-text" style="color:var(--gold-light); margin-top: 20px; font-weight:bold; text-transform:uppercase; letter-spacing:1px;">📈 Что дают навыки:</div>
+        <div class="cmd-desc-text" style="margin-top: 6px;">Навыки прокачиваются во время игры и открывают разные усиления.</div>
+        <div class="cmd-skills-grid">
+          <div class="cmd-skill-item"><strong>⛏️ Mining (Шахтёр)</strong> Быстрее добыча руды, шанс двойных ресурсов, больше опыта.</div>
+          <div class="cmd-skill-item"><strong>🪓 Foraging (Лесоруб)</strong> Ускоренная рубка деревьев, шанс получить больше древесины.</div>
+          <div class="cmd-skill-item"><strong>⚔️ Fighting (Боец)</strong> Увеличенный урон, шанс критических ударов, бонусы против мобов.</div>
+          <div class="cmd-skill-item"><strong>🏹 Archery (Стрелок)</strong> Повышенный урон, улучшенная точность, усиленные стрелы.</div>
+          <div class="cmd-skill-item"><strong>🛡️ Defense (Защита)</strong> Снижение входящего урона, дополнительное здоровье.</div>
+          <div class="cmd-skill-item"><strong>🧪 Alchemy (Алхимия)</strong> Усиление зелий, увеличение времени эффектов.</div>
+          <div class="cmd-skill-item"><strong>🍖 Farming (Фермер)</strong> Больше урожая, ускоренный рост растений.</div>
+        </div>
+
+        <div class="cmd-desc-text" style="color:#29b6f6; margin-top: 20px; font-weight:bold; text-transform:uppercase; letter-spacing:1px;">✨ Мана:</div>
+        <div class="cmd-desc-text" style="margin-top: 6px;">
+          Мана нужна для использования специальных способностей навыков. С её помощью можно: активировать временные усиления, ускорять добычу ресурсов, восстанавливать здоровье, усиливать урон, использовать бонусные эффекты навыков.<br><br>
+          <i style="color:rgba(245,230,200,.4);">Чем больше уровень навыков — тем сильнее способности. Мана постепенно восстанавливается сама.</i>
+        </div>
+      </div>
+
+      <div class="cmd-card">
+        <div class="cmd-header">
+          <span class="cmd-icon">💍</span>
+          <div class="cmd-title">Семья</div>
+        </div>
+        <div class="cmd-list">
+          <div class="cmd-item"><span class="cmd-code">/marry [ник]</span> — сделать предложение</div>
+          <div class="cmd-item"><span class="cmd-code">/marry accept</span> — принять предложение</div>
+          <div class="cmd-item"><span class="cmd-code">/marry home</span> — телепорт к партнеру</div>
+          <div class="cmd-item"><span class="cmd-code">/marry divorce</span> — развод</div>
+        </div>
+      </div>
+
+      <div class="cmd-card">
+        <div class="cmd-header">
+          <span class="cmd-icon">🎭</span>
+          <div class="cmd-title">RP, Косметика, Анимации</div>
+        </div>
+        <div class="cmd-list">
+          <div class="cmd-item"><span class="cmd-code">/me [текст]</span> — действие персонажа</div>
+          <div class="cmd-item"><span class="cmd-code">/do [текст]</span> — описание ситуации</div>
+          <div class="cmd-item"><span class="cmd-code">/try [текст]</span> — попытка действия</div>
+          <div class="cmd-item"><span class="cmd-code">/uc</span> — меню косметики</div>
+          <div class="cmd-item"><span class="cmd-code">/emote</span> — список эмоций</div>
+          <div class="cmd-item"><span class="cmd-code">/skin [ник]</span> — установить скин (clear - сброс)</div>
+          <div class="cmd-item"><span class="cmd-code">/sit, /lay, /crawl</span> — сесть, лечь, ползти</div>
+        </div>
+      </div>
+
+      <div class="cmd-card">
+        <div class="cmd-header">
+          <span class="cmd-icon">⚙️</span>
+          <div class="cmd-title">Дополнительно</div>
+        </div>
+        <div class="cmd-list">
+          <div class="cmd-item"><span class="cmd-code">/vehicle</span> — меню транспорта (shop - магазин)</div>
+          <div class="cmd-item"><span class="cmd-code">/redeem [код]</span> — активировать промокод</div>
+          <div class="cmd-item"><span class="cmd-code">/report [ник] [причина]</span> — жалоба на игрока</div>
+          <div class="cmd-item"><span class="cmd-code">/passport</span> — паспорт игрока</div>
+          <div class="cmd-item"><span class="cmd-code">/menu</span> — главное меню сервера</div>
+        </div>
+        <div class="cmd-desc-text">
+          💡 В <span class="cmd-code">/menu</span> можно найти: варпы, магазин, кланы, работы, навыки, транспорт, косметику, статистику и другое.
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1500,6 +1698,7 @@ footer{position:relative;z-index:1;text-align:center;padding:64px 40px;border-to
     <a href="#home">Главная</a>
     <a href="#info">Сервер</a>
     <a href="#features">Особенности</a>
+    <a href="#commands">Навигация</a>
     <a href="#shop">Магазин</a>
     <a href="#donors">Донатеры</a>
     <a href="#goat-section">Козёл</a>
@@ -1585,6 +1784,15 @@ function toast(msg){
   const t=document.getElementById('toast');
   t.textContent=msg; t.classList.add('show');
   setTimeout(()=>t.classList.remove('show'),2700);
+}
+
+/* ======= COMMANDS TOGGLE ======= */
+function toggleCommands(){
+  const s=document.getElementById('commands-section');
+  const b=document.getElementById('cmds-toggle-btn');
+  const open=s.classList.toggle('open');
+  b.querySelector('span').textContent=open?'✕ Свернуть справочник':'📖 Открыть справочник команд';
+  if(open) setTimeout(()=>s.scrollIntoView({behavior:'smooth',block:'nearest'}),120);
 }
 
 /* ======= MODS TOGGLE ======= */
