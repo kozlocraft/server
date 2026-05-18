@@ -161,7 +161,7 @@ nav{
   10%{opacity:.6;}90%{opacity:.3;}
   100%{transform:translateY(-20px) rotate(360deg);opacity:0;}
 }
-.hero-content{position:relative;z-index:2;}
+.hero-content{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;}
 .hero-badge{
   display:inline-flex;align-items:center;gap:8px;
   font-family:'Cinzel',serif;font-size:11px;
@@ -189,7 +189,7 @@ nav{
 .hero-ip-box{
   display:inline-flex;flex-direction:column;align-items:center;gap:10px;
   background:rgba(4,8,4,.82);border:2px solid var(--grass);
-  padding:26px 48px;margin-bottom:36px;position:relative;
+  padding:26px 48px;margin-bottom:24px;position:relative;
   animation:fadeInUp .8s ease .3s both;
   box-shadow:0 0 36px rgba(74,124,47,.2),inset 0 0 30px rgba(74,124,47,.04);
 }
@@ -205,6 +205,22 @@ nav{
 }
 .ip-value:hover{background:rgba(240,192,64,.16);box-shadow:0 0 16px rgba(240,192,64,.35);}
 .ip-sep{width:100%;height:1px;background:rgba(255,255,255,.07);}
+
+/* ===== WHITELIST NOTICE ===== */
+.whitelist-notice {
+  display: inline-flex; align-items: center; gap: 16px;
+  background: rgba(255, 170, 0, 0.06); border: 1px solid rgba(255, 170, 0, 0.35);
+  padding: 16px 26px; margin-bottom: 34px; max-width: 90%;
+  animation: fadeInUp .8s ease .32s both; text-align: left;
+  box-shadow: 0 0 20px rgba(255, 170, 0, 0.1), inset 0 0 15px rgba(255, 170, 0, 0.05);
+}
+.wl-icon { font-size: 32px; filter: drop-shadow(0 0 12px rgba(255, 170, 0, 0.5)); animation: pulse 2s infinite; }
+.wl-text-wrap { flex: 1; }
+.wl-title { font-family: 'Cinzel', serif; font-size: 13px; font-weight: 700; color: var(--orange); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; text-shadow: 0 0 10px rgba(255, 170, 0, 0.3); }
+.wl-desc { font-size: 15px; color: rgba(245, 230, 200, 0.75); line-height: 1.5; }
+.wl-desc a { color: var(--gold-light); text-decoration: none; border-bottom: 1px dashed rgba(255, 224, 102, 0.5); transition: all .3s; }
+.wl-desc a:hover { color: #fff; border-bottom-color: #fff; text-shadow: 0 0 10px rgba(255, 224, 102, 0.7); }
+
 .hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;animation:fadeInUp .8s ease .4s both;}
 .btn{
   font-family:'Cinzel',serif;font-size:12px;font-weight:600;
@@ -336,6 +352,7 @@ section{position:relative;z-index:1;padding:100px 40px;}
   padding:36px 28px;position:relative;overflow:hidden;
   transition:all .4s ease;text-align:center;
   box-shadow:0 0 28px rgba(240,192,64,.06),inset 0 0 20px rgba(240,192,64,.03);
+  display: flex; flex-direction: column; justify-content: space-between;
 }
 .shop-card::before{content:'';position:absolute;width:12px;height:12px;background:var(--gold);top:-2px;left:-2px;}
 .shop-card::after{content:'';position:absolute;width:12px;height:12px;background:var(--gold);bottom:-2px;right:-2px;}
@@ -352,7 +369,7 @@ section{position:relative;z-index:1;padding:100px 40px;}
   padding:15px 34px;cursor:pointer;border:2px solid var(--gold);
   color:var(--gold);background:rgba(240,192,64,.08);
   position:relative;overflow:hidden;transition:all .3s;display:inline-block;
-  box-shadow:0 0 18px rgba(240,192,64,.2);
+  box-shadow:0 0 18px rgba(240,192,64,.2); width: 100%; box-sizing: border-box;
 }
 .btn-shop::before{content:'';position:absolute;inset:0;background:var(--gold);transform:translateX(-101%);transition:transform .3s ease;z-index:0;}
 .btn-shop:hover::before{transform:translateX(0);}
@@ -459,9 +476,8 @@ section{position:relative;z-index:1;padding:100px 40px;}
 .sev-ban{color:var(--red);border-color:rgba(255,68,68,.4);background:rgba(255,68,68,.08);}
 .sev-mute{color:var(--orange);border-color:rgba(255,170,0,.4);background:rgba(255,170,0,.08);}
 .sev-warn{color:var(--gold);border-color:rgba(255,215,0,.4);background:rgba(255,215,0,.08);}
-.rules-fn{margin-top:28px;padding:18px;background:rgba(74,124,47,.07);border:1px solid rgba(74,124,47,.2);text-align:center;}
+.rules-fn{margin-top:28px;padding:18px 24px;background:rgba(74,124,47,.07);border:1px solid rgba(74,124,47,.2);text-align:center;}
 .rules-fn p{font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:rgba(245,230,200,.42);text-transform:uppercase;}
-.rules-fn a{color:var(--gold);text-decoration:none;}
 
 /* ===== MODS SECTION ===== */
 #mods{max-width:900px;margin:0 auto;padding:80px 40px;}
@@ -550,6 +566,109 @@ section{position:relative;z-index:1;padding:100px 40px;}
   color:rgba(0,210,106,.7);
 }
 
+/* ===== DONORS SECTION ===== */
+.donors-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:20px;
+  max-width:860px;margin:0 auto;
+}
+.donor-card{
+  background:rgba(8,16,8,.82);
+  border:2px solid rgba(240,192,64,.25);
+  padding:36px 20px 28px;
+  text-align:center;position:relative;overflow:hidden;
+  transition:all .4s ease;
+  box-shadow:0 0 20px rgba(240,192,64,.05),inset 0 0 18px rgba(240,192,64,.02);
+}
+.donor-card::before{content:'';position:absolute;width:10px;height:10px;background:var(--gold);top:-1px;left:-1px;}
+.donor-card::after{content:'';position:absolute;width:10px;height:10px;background:var(--gold);bottom:-1px;right:-1px;}
+.donor-card:hover{
+  border-color:rgba(240,192,64,.7);
+  transform:translateY(-8px);
+  box-shadow:0 20px 50px rgba(0,0,0,.5),0 0 36px rgba(240,192,64,.18);
+}
+.donor-rank{font-size:28px;margin-bottom:12px;filter:drop-shadow(0 0 10px rgba(240,192,64,.6));animation:shopFloat 2.8s ease-in-out infinite alternate;}
+.donor-avatar{
+  width:64px;height:64px;
+  background:linear-gradient(135deg,rgba(74,124,47,.4),rgba(240,192,64,.25));
+  border:2px solid rgba(240,192,64,.4);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 14px;
+  font-family:'Cinzel',serif;font-size:26px;font-weight:900;
+  color:var(--gold);text-shadow:0 0 14px rgba(240,192,64,.7);
+  box-shadow:0 0 20px rgba(240,192,64,.12),inset 0 0 12px rgba(240,192,64,.08);
+}
+.donor-name{
+  font-family:'Cinzel',serif;font-size:13px;font-weight:700;
+  letter-spacing:2px;color:var(--cream);text-transform:uppercase;
+  margin-bottom:8px;word-break:break-all;
+}
+.donor-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:'Cinzel',serif;font-size:8px;letter-spacing:3px;text-transform:uppercase;
+  padding:4px 12px;
+  border:1px solid rgba(240,192,64,.35);color:var(--gold);background:rgba(240,192,64,.08);
+}
+
+/* ===== DONATE MODAL ===== */
+.donate-modal-overlay{
+  position:fixed;inset:0;z-index:5000;
+  background:rgba(0,0,0,.82);backdrop-filter:blur(8px);
+  display:flex;align-items:center;justify-content:center;padding:20px;
+  opacity:0;visibility:hidden;transition:opacity .35s ease,visibility .35s ease;
+}
+.donate-modal-overlay.open{opacity:1;visibility:visible;}
+.donate-modal-box{
+  background:rgba(4,8,4,.97);border:2px solid rgba(240,192,64,.45);
+  padding:48px 44px;max-width:520px;width:100%;position:relative;
+  box-shadow:0 0 80px rgba(0,0,0,.8),0 0 40px rgba(240,192,64,.1);
+}
+.donate-modal-close{
+  position:absolute;top:16px;right:20px;
+  background:none;border:none;cursor:pointer;
+  font-family:'Cinzel',serif;font-size:18px;color:rgba(245,230,200,.4);
+  transition:color .2s;padding:4px 8px;
+}
+.donate-modal-close:hover{color:var(--gold);}
+.donate-modal-title{
+  font-family:'Cinzel',serif;font-size:24px;font-weight:900;
+  color:var(--gold);letter-spacing:3px;text-transform:uppercase;
+  text-shadow:2px 2px 0 #5a4400,0 0 30px rgba(240,192,64,.4);
+  margin-bottom:8px;text-align:center;
+}
+.donate-modal-sub{
+  font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;
+  text-transform:uppercase;color:rgba(245,230,200,.35);
+  text-align:center;margin-bottom:32px;
+}
+.donate-options{display:flex;flex-direction:column;gap:14px;}
+.donate-option{
+  display:flex;align-items:center;gap:18px;
+  background:rgba(240,192,64,.04);border:1px solid rgba(240,192,64,.2);
+  padding:20px 22px;text-decoration:none;
+  transition:all .3s ease;position:relative;overflow:hidden;
+}
+.donate-option::before{
+  content:'';position:absolute;inset:0;
+  background:rgba(240,192,64,.06);
+  transform:translateX(-101%);transition:transform .3s ease;
+}
+.donate-option:hover::before{transform:translateX(0);}
+.donate-option:hover{border-color:rgba(240,192,64,.6);box-shadow:0 0 24px rgba(240,192,64,.1);}
+.donate-opt-icon{font-size:32px;filter:drop-shadow(0 0 8px rgba(240,192,64,.5));flex-shrink:0;position:relative;}
+.donate-opt-info{flex:1;text-align:left;position:relative;}
+.donate-opt-name{font-family:'Cinzel',serif;font-size:14px;font-weight:700;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;}
+.donate-opt-desc{font-size:13px;color:rgba(245,230,200,.5);line-height:1.5;margin-bottom:6px;}
+.donate-opt-price{font-family:'Cinzel',serif;font-size:11px;color:var(--emerald);letter-spacing:2px;}
+.donate-opt-arrow{font-size:20px;color:rgba(240,192,64,.4);transition:color .3s,transform .3s;flex-shrink:0;position:relative;}
+.donate-option:hover .donate-opt-arrow{color:var(--gold);transform:translateX(4px);}
+.donate-modal-note{
+  margin-top:22px;text-align:center;
+  font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;
+  color:rgba(245,230,200,.2);
+}
+
 /* ===== FOOTER ===== */
 footer{position:relative;z-index:1;text-align:center;padding:64px 40px;border-top:1px solid rgba(74,124,47,.2);background:rgba(4,8,4,.92);}
 .footer-goat{font-size:28px;display:block;margin-bottom:12px;animation:goatSway 3s ease-in-out infinite;}
@@ -580,19 +699,6 @@ footer{position:relative;z-index:1;text-align:center;padding:64px 40px;border-to
 .fade-in{opacity:0;transform:translateY(38px);transition:opacity .7s ease,transform .7s ease;}
 .fade-in.visible{opacity:1;transform:translateY(0);}
 
-/* ===== MODAL STEPS (NEW) ===== */
-.modal-step {
-  display: none;
-  animation: modalFadeIn 0.3s ease forwards;
-}
-.modal-step.active {
-  display: block;
-}
-@keyframes modalFadeIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
 @media(max-width:640px){
   section{padding:70px 18px;}
   #features,#goat-section,#rules{padding:70px 18px;}
@@ -602,6 +708,7 @@ footer{position:relative;z-index:1;text-align:center;padding:64px 40px;border-to
   .rule-severity{order:3;margin-top:6px;}
   .goat-block{padding:32px 20px;}
   nav{padding:0 18px;}
+  .whitelist-notice{ flex-direction:column; text-align:center; padding: 18px; }
 }
 </style>
 </head>
@@ -664,6 +771,7 @@ footer{position:relative;z-index:1;text-align:center;padding:64px 40px;border-to
     <li><a href="#mods">🧩 Моды</a></li>
     <li><a href="#goat-section">🐐 Козёл</a></li>
     <li><a href="#shop" style="color:var(--gold);border-color:rgba(240,192,64,.25);">🛒 Магазин</a></li>
+    <li><a href="#donors" style="color:var(--gold);border-color:rgba(240,192,64,.2);">💎 Донатеры</a></li>
     <li><a href="#rules" class="rules-btn">📜 Правила</a></li>
     <li><a href="https://t.me/kozlocraft" target="_blank">Telegram</a></li>
   </ul>
@@ -685,6 +793,15 @@ footer{position:relative;z-index:1;text-align:center;padding:64px 40px;border-to
       <div class="ip-label">Доменное имя</div>
       <div class="ip-value" onclick="copyIP('kozlocraft.join-mc.net')">kozlocraft.join-mc.net</div>
     </div>
+    
+    <div class="whitelist-notice">
+      <div class="wl-icon">🔒</div>
+      <div class="wl-text-wrap">
+        <div class="wl-title">На сервере включен WhiteList</div>
+        <div class="wl-desc">Чтобы зайти на сервер, подай заявку через <a href="https://t.me/kozlocraft_support_bot" target="_blank">Telegram-бота</a> или напиши нам на <a href="mailto:kozlocraft2@gmail.com">почту</a>.</div>
+      </div>
+    </div>
+
     <div class="hero-online-wrap">
       <div class="hero-stat">
         <div class="hero-stat-num" id="hero-online">—</div>
@@ -865,36 +982,45 @@ footer{position:relative;z-index:1;text-align:center;padding:64px 40px;border-to
   <div class="shop-wrapper">
     <div class="shop-grid">
 
-      <div class="shop-card fade-in">
-        <span class="shop-icon">🎨</span>
-        <div class="shop-item-name">Донат-Гаджеты</div>
-        <p class="shop-item-desc">
-          Кастомные косметические привилегии для твоего персонажа.
-          Без P2W — только стиль и уникальность на сервере.
-        </p>
-        <div class="shop-price-row">
-          <span class="shop-badge">✔ Без P2W</span>
-          <span class="shop-badge" style="border-color:rgba(240,192,64,.4);color:var(--gold);background:rgba(240,192,64,.07);">💎 Уникально</span>
+      <div class="shop-card fade-in" style="display:flex; flex-direction:column; justify-content:space-between;">
+        <div>
+          <span class="shop-icon">🎨</span>
+          <div class="shop-item-name">Донат-Гаджеты</div>
+          <p class="shop-item-desc">
+            Кастомные косметические привилегии для твоего персонажа.
+            Без P2W — только стиль и уникальность на сервере.
+          </p>
+          <div class="shop-price-row">
+            <span class="shop-badge">✔ Без P2W</span>
+            <span class="shop-badge" style="border-color:rgba(240,192,64,.4);color:var(--gold);background:rgba(240,192,64,.07);">💎 Уникально</span>
+          </div>
         </div>
-        <div style="font-family:'Cinzel',serif;font-size:32px;font-weight:900;color:var(--gold);text-shadow:2px 2px 0 #5a4400,0 0 24px rgba(240,192,64,.5);margin-bottom:20px;letter-spacing:1px;">250 ₽</div>
-        <button class="btn-shop" onclick="openPayModal()">
-          <span>🛒 Купить гаджет</span>
-        </button>
+        <div>
+          <div style="font-family:'Cinzel',serif;font-size:32px;font-weight:900;color:var(--gold);text-shadow:2px 2px 0 #5a4400,0 0 24px rgba(240,192,64,.5);margin-bottom:20px;letter-spacing:1px;">250 ₽</div>
+          <a href="https://kozlocraft.github.io/server/donate" target="_blank" class="btn-shop" style="display:inline-block;text-align:center;box-sizing:border-box;">
+            <span>🛒 Купить гаджет</span>
+          </a>
+        </div>
       </div>
 
-      <div class="shop-card fade-in" style="transition-delay:.12s">
-        <span class="shop-icon">👑</span>
-        <div class="shop-item-name">Привилегии</div>
-        <p class="shop-item-desc">
-          Специальные привилегии для поддержки сервера.
-          Помоги развитию KozloCraft и получи приятные бонусы.
-        </p>
-        <div class="shop-price-row">
-          <span class="shop-badge">⭐ Поддержка сервера</span>
+      <div class="shop-card fade-in" style="transition-delay:.12s; display:flex; flex-direction:column; justify-content:space-between;">
+        <div>
+          <span class="shop-icon">👑</span>
+          <div class="shop-item-name">Привилегии</div>
+          <p class="shop-item-desc">
+            Специальные привилегии для поддержки сервера.
+            Помоги развитию KozloCraft и получи приятные бонусы.
+          </p>
+          <div class="shop-price-row">
+            <span class="shop-badge">⭐ Поддержка сервера</span>
+          </div>
         </div>
-        <a href="цццц" target="_blank" class="btn-shop">
-          <span>👑Скоро</span>
-        </a>
+        <div>
+          <div style="font-family:'Cinzel',serif;font-size:18px;color:rgba(245,230,200,.4);margin-bottom:32px;letter-spacing:1px;text-transform:uppercase;">Индивидуально</div>
+          <button onclick="openDonateModal()" class="btn-shop" style="display:inline-block;text-align:center;box-sizing:border-box;width:100%;cursor:pointer;">
+            <span>👑 Поддержать сервер</span>
+          </button>
+        </div>
       </div>
 
     </div>
@@ -902,71 +1028,74 @@ footer{position:relative;z-index:1;text-align:center;padding:64px 40px;border-to
   </div>
 </section>
 
-<div id="pay-modal" style="display:none;position:fixed;inset:0;z-index:9000;align-items:center;justify-content:center;background:rgba(0,0,0,.78);backdrop-filter:blur(6px);">
-  <div style="background:#060e06;border:2px solid var(--gold);max-width:440px;width:90%;position:relative;box-shadow:0 0 60px rgba(240,192,64,.25),0 0 120px rgba(0,0,0,.8);">
-    <div style="position:absolute;width:12px;height:12px;background:var(--gold);top:-2px;left:-2px;"></div>
-    <div style="position:absolute;width:12px;height:12px;background:var(--gold);bottom:-2px;right:-2px;"></div>
-    <div style="background:linear-gradient(135deg,rgba(240,192,64,.15),rgba(10,20,10,.9));padding:22px 28px;border-bottom:1px solid rgba(240,192,64,.25);display:flex;align-items:center;justify-content:space-between;">
-      <div>
-        <div style="font-family:'Cinzel',serif;font-size:16px;font-weight:900;color:var(--gold);letter-spacing:3px;text-transform:uppercase;">🛒 Оплата гаджетов</div>
-        <div style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:rgba(245,230,200,.4);text-transform:uppercase;margin-top:3px;">KozloCraft · Донат</div>
-      </div>
-      <button onclick="closePayModal()" style="background:none;border:none;cursor:pointer;font-size:22px;color:rgba(245,230,200,.4);line-height:1;padding:0 4px;transition:color .2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(245,230,200,.4)'">✕</button>
+<section id="donors" style="max-width:900px;margin:0 auto;padding:80px 40px;">
+  <h2 class="section-title fade-in">💎 Зал Меценатов</h2>
+  <div class="section-divider fade-in">
+    <div class="divider-line"></div><div class="divider-gem" style="background:var(--gold);box-shadow:0 0 14px rgba(240,192,64,.8);"></div><div class="divider-line"></div>
+  </div>
+  <p class="fade-in" style="text-align:center;font-family:'Cinzel',serif;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:rgba(245,230,200,.4);margin-bottom:48px;">Эти игроки поддержали KozloCraft — вечная им слава 🐐</p>
+  <div class="donors-grid fade-in">
+
+    <div class="donor-card">
+      <div class="donor-rank">👑</div>
+      <div class="donor-avatar">E</div>
+      <div class="donor-name">Egoridze</div>
+      <div class="donor-badge">Меценат</div>
     </div>
-    <div style="padding:28px 28px 22px;">
-      
-      <div id="pay-step-1" class="modal-step active">
-        <div style="display:flex;align-items:center;justify-content:space-between;background:rgba(240,192,64,.05);border:1px solid rgba(240,192,64,.2);padding:14px 18px;margin-bottom:22px;">
-          <div style="display:flex;align-items:center;gap:12px;">
-            <span style="font-size:28px;">🎨</span>
-            <div>
-              <div style="font-family:'Cinzel',serif;font-size:13px;font-weight:700;color:var(--cream);letter-spacing:1px;">Донат-Гаджеты</div>
-              <div style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:rgba(0,210,106,.7);text-transform:uppercase;margin-top:2px;">Ввод данных</div>
-            </div>
-          </div>
-        </div>
-        
-        <label style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(245,230,200,.5);display:block;margin-bottom:8px;">Ник в Minecraft</label>
-        <input id="pay-nick" type="text" placeholder="Введи свой ник..." maxlength="32"
-          style="width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(240,192,64,.3);color:var(--cream);font-family:'Cinzel',serif;font-size:14px;letter-spacing:1px;padding:12px 14px;outline:none;transition:border-color .2s;box-sizing:border-box;margin-bottom:6px;"
-          onfocus="this.style.borderColor='rgba(240,192,64,.75)'" onblur="this.style.borderColor='rgba(240,192,64,.3)'"
-        />
-        <div id="pay-nick-err" style="font-family:'Cinzel',serif;font-size:10px;color:#ff4444;letter-spacing:1px;min-height:16px;margin-bottom:16px;"></div>
-        
-        <button onclick="goToPayStep2()" class="btn-shop" style="width:100%;justify-content:center;display:flex;font-size:14px;padding:16px;">
-          <span>➡️ Продолжить</span>
-        </button>
-      </div>
 
-      <div id="pay-step-2" class="modal-step">
-        <div style="display:flex;align-items:center;justify-content:space-between;background:rgba(240,192,64,.05);border:1px solid rgba(240,192,64,.2);padding:14px 18px;margin-bottom:22px;">
-          <div style="display:flex;align-items:center;gap:12px;">
-            <span style="font-size:28px;">🛒</span>
-            <div>
-              <div style="font-family:'Cinzel',serif;font-size:13px;font-weight:700;color:var(--cream);letter-spacing:1px;">Подтверждение</div>
-              <div id="pay-display-nick" style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:rgba(0,210,106,.7);text-transform:uppercase;margin-top:2px;">Игрок: ...</div>
-            </div>
-          </div>
-          <div style="font-family:'Cinzel',serif;font-size:22px;font-weight:900;color:var(--gold);text-shadow:0 0 14px rgba(240,192,64,.5);">250 ₽</div>
-        </div>
+    <div class="donor-card">
+      <div class="donor-rank">⭐</div>
+      <div class="donor-avatar">T</div>
+      <div class="donor-name">x_Tata_x</div>
+      <div class="donor-badge">Меценат</div>
+    </div>
 
-        <button id="pay-btn-final" onclick="startPaymentFinal()" class="btn-shop" style="width:100%;justify-content:center;display:flex;font-size:14px;padding:16px;">
-          <span>💳 Оплатить 250 ₽</span>
-        </button>
-        
-        <button onclick="goToPayStep1()" style="background:none;border:none;color:var(--gold);font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;margin-top:18px;width:100%;cursor:pointer;opacity:0.7;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">
-          ← Назад к вводу ника
-        </button>
+    <div class="donor-card">
+      <div class="donor-rank">💎</div>
+      <div class="donor-avatar">M</div>
+      <div class="donor-name">murMyau_luv</div>
+      <div class="donor-badge">Меценат</div>
+    </div>
 
-        <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-top:16px;flex-wrap:wrap;">
-          <span style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:rgba(245,230,200,.28);text-transform:uppercase;">Способы оплаты:</span>
-          <span style="font-family:'Courier New',monospace;font-size:11px;color:rgba(245,230,200,.45);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);padding:2px 8px;">💳 Карта</span>
-          <span style="font-family:'Courier New',monospace;font-size:11px;color:rgba(245,230,200,.45);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);padding:2px 8px;">📱 СБП</span>
+    <div class="donor-card">
+      <div class="donor-rank">🌟</div>
+      <div class="donor-avatar">X</div>
+      <div class="donor-name">xxxchicha</div>
+      <div class="donor-badge">Меценат</div>
+    </div>
+
+  </div>
+</section>
+
+<div id="donate-modal" class="donate-modal-overlay" onclick="closeDonateModalOutside(event)">
+  <div class="donate-modal-box">
+    <button class="donate-modal-close" onclick="closeDonateModal()">✕</button>
+    <div class="donate-modal-title">💎 Поддержать KozloCraft</div>
+    <p class="donate-modal-sub">Выбери, что тебя интересует:</p>
+    <div class="donate-options">
+
+      <a href="https://kozlocraft.github.io/server/donate" target="_blank" class="donate-option">
+        <div class="donate-opt-icon">🎨</div>
+        <div class="donate-opt-info">
+          <div class="donate-opt-name">Донат-Гаджеты</div>
+          <div class="donate-opt-desc">Косметика для персонажа — только стиль, без P2W</div>
+          <div class="donate-opt-price">от 250 ₽</div>
         </div>
-        <div style="text-align:center;margin-top:10px;font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:rgba(245,230,200,.2);text-transform:uppercase;">Безопасная оплата через Platega</div>
-      </div>
+        <div class="donate-opt-arrow">→</div>
+      </a>
+
+      <a href="https://t.me/kozlocraft" target="_blank" class="donate-option">
+        <div class="donate-opt-icon">👑</div>
+        <div class="donate-opt-info">
+          <div class="donate-opt-name">Привилегии</div>
+          <div class="donate-opt-desc">Специальные привилегии поддержки — индивидуально</div>
+          <div class="donate-opt-price">Индивидуально</div>
+        </div>
+        <div class="donate-opt-arrow">→</div>
+      </a>
 
     </div>
+    <div class="donate-modal-note">Безопасная оплата · Platega · Карта / СБП</div>
   </div>
 </div>
 
@@ -1015,6 +1144,40 @@ footer{position:relative;z-index:1;text-align:center;padding:64px 40px;border-to
           <span class="mod-tag">Зависимость</span>
         </div>
         <a class="mod-download" href="https://cdn.modrinth.com/data/P7dR8mSH/versions/i5tSkVBH/fabric-api-0.141.3%2B1.21.11.jar" download target="_blank">⬇ Скачать мод</a>
+      </div>
+
+      <div class="mod-card fade-in">
+        <div class="mod-card-top">
+          <div class="mod-icon">📺</div>
+          <div class="mod-info">
+            <div class="mod-name">Collins (YouTube)</div>
+            <div class="mod-version">v1.3 · 1.21.11</div>
+          </div>
+        </div>
+        <div class="mod-desc">Смотри видео с YouTube прямо в Майнкрафте! Позволяет создавать экраны и включать ролики для совместного просмотра с друзьями.</div>
+        <div class="mod-tags">
+          <span class="mod-tag req">⚠ Обязателен</span>
+          <span class="mod-tag">Fabric</span>
+          <span class="mod-tag">Клиент</span>
+        </div>
+        <a class="mod-download" href="https://cdn.modrinth.com/data/JU2pT2cU/versions/BkgiuyXp/collins-fabric-1.3-mc1.21.11.jar" download target="_blank">⬇ Скачать мод</a>
+      </div>
+
+      <div class="mod-card fade-in">
+        <div class="mod-card-top">
+          <div class="mod-icon">🎛️</div>
+          <div class="mod-info">
+            <div class="mod-name">Mod Menu</div>
+            <div class="mod-version">v17.0.0 · 1.21.11</div>
+          </div>
+        </div>
+        <div class="mod-desc">Добавляет удобный список установленных модов и меню для их настройки прямо в главном меню игры.</div>
+        <div class="mod-tags">
+          <span class="mod-tag req">⚠ Обязателен</span>
+          <span class="mod-tag">Fabric</span>
+          <span class="mod-tag">Клиент</span>
+        </div>
+        <a class="mod-download" href="https://cdn.modrinth.com/data/mOgUt4GM/versions/Tyk71iSw/modmenu-17.0.0.jar" download target="_blank">⬇ Скачать мод</a>
       </div>
 
     </div>
@@ -1247,8 +1410,15 @@ footer{position:relative;z-index:1;text-align:center;padding:64px 40px;border-to
         </div>
 
         <div class="rules-fn">
-          <p>Незнание правил не освобождает от ответственности.<br>
-          Вопросы и апелляции: <a href="https://t.me/kozlocraft" target="_blank">t.me/kozlocraft</a></p>
+          <p style="margin-bottom: 18px;">Незнание правил не освобождает от ответственности.</p>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 14px;">
+            <a href="https://t.me/kozlocraft_support_bot" target="_blank" class="btn btn-rules" style="padding: 12px 28px; font-size: 11px;">
+              <span>💬 Обратиться в Поддержку</span>
+            </a>
+            <div style="font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 2px; color: rgba(245,230,200,.42); text-transform: uppercase;">
+              Или по электронной почте: <a href="mailto:kozlocraft2@gmail.com" style="color: var(--gold); text-decoration: none; border-bottom: 1px dashed rgba(240,192,64,.5); padding-bottom: 2px; transition: all .2s;">kozlocraft2@gmail.com</a>
+            </div>
+          </div>
         </div>
 
       </div>
@@ -1331,6 +1501,7 @@ footer{position:relative;z-index:1;text-align:center;padding:64px 40px;border-to
     <a href="#info">Сервер</a>
     <a href="#features">Особенности</a>
     <a href="#shop">Магазин</a>
+    <a href="#donors">Донатеры</a>
     <a href="#goat-section">Козёл</a>
     <a href="#rules">Правила</a>
     <a href="https://t.me/kozlocraft" target="_blank">Telegram</a>
@@ -1339,6 +1510,20 @@ footer{position:relative;z-index:1;text-align:center;padding:64px 40px;border-to
 </footer>
 
 <script>
+/* ======= DONATE MODAL ======= */
+function openDonateModal(){
+  document.getElementById('donate-modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeDonateModal(){
+  document.getElementById('donate-modal').classList.remove('open');
+  document.body.style.overflow='';
+}
+function closeDonateModalOutside(e){
+  if(e.target===document.getElementById('donate-modal')) closeDonateModal();
+}
+document.addEventListener('keydown',function(e){if(e.key==='Escape') closeDonateModal();});
+
 /* ======= LOADER ======= */
 (function(){
   const bar  = document.getElementById('loader-bar');
@@ -1532,75 +1717,6 @@ async function fetchServerOnline(){
 }
 fetchServerOnline();
 setInterval(fetchServerOnline, 60000);
-
-/* ======= PAY MODAL LOGIC ======= */
-function openPayModal(){
-  const m = document.getElementById('pay-modal');
-  m.style.display = 'flex';
-  document.body.style.overflow = 'hidden';
-  
-  // Set correct step
-  goToPayStep1();
-
-  // Load saved nick
-  const savedNick = localStorage.getItem('kozlocraft_nick');
-  if(savedNick) {
-    document.getElementById('pay-nick').value = savedNick;
-  }
-  
-  setTimeout(()=>document.getElementById('pay-nick').focus(), 120);
-}
-
-function closePayModal(){
-  document.getElementById('pay-modal').style.display = 'none';
-  document.body.style.overflow = '';
-  document.getElementById('pay-nick-err').textContent = '';
-}
-
-// Close events
-document.getElementById('pay-modal').addEventListener('click', function(e){
-  if(e.target === this) closePayModal();
-});
-document.addEventListener('keydown', function(e){
-  if(e.key === 'Escape') closePayModal();
-});
-
-// Step Navigation
-function goToPayStep1() {
-  document.getElementById('pay-step-2').classList.remove('active');
-  document.getElementById('pay-step-1').classList.add('active');
-  document.getElementById('pay-nick-err').textContent = '';
-}
-
-function goToPayStep2() {
-  const nick = document.getElementById('pay-nick').value.trim();
-  const err = document.getElementById('pay-nick-err');
-
-  if(!nick){
-    err.textContent = '⚠ Введи свой ник в Minecraft';
-    return;
-  }
-  if(!/^[a-zA-Z0-9_]{3,16}$/.test(nick)){
-    err.textContent = '⚠ Ник: 3–16 символов, только буквы/цифры/_';
-    return;
-  }
-
-  err.textContent = '';
-  localStorage.setItem('kozlocraft_nick', nick);
-  
-  document.getElementById('pay-display-nick').textContent = 'Игрок: ' + nick;
-  document.getElementById('pay-step-1').classList.remove('active');
-  document.getElementById('pay-step-2').classList.add('active');
-}
-
-// Final payment redirect
-function startPaymentFinal(){
-  const btn = document.getElementById('pay-btn-final');
-  btn.querySelector('span').textContent = '⏳ Перенаправление...';
-  btn.disabled = true;
-
-  window.location.href = 'https://pay.platega.io/sbp-qr?id=8c58faf7-ad30-410c-8ed7-5679010190af&mh=e9de727e-0508-46a5-a4f6-2dff76086d5d';
-}
 </script>
 </body>
 </html>
