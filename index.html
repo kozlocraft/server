@@ -206,21 +206,6 @@ nav{
 .ip-value:hover{background:rgba(240,192,64,.16);box-shadow:0 0 16px rgba(240,192,64,.35);}
 .ip-sep{width:100%;height:1px;background:rgba(255,255,255,.07);}
 
-/* ===== WHITELIST NOTICE ===== */
-.whitelist-notice {
-  display: inline-flex; align-items: center; gap: 16px;
-  background: rgba(255, 170, 0, 0.06); border: 1px solid rgba(255, 170, 0, 0.35);
-  padding: 16px 26px; margin-bottom: 34px; max-width: 90%;
-  animation: fadeInUp .8s ease .32s both; text-align: left;
-  box-shadow: 0 0 20px rgba(255, 170, 0, 0.1), inset 0 0 15px rgba(255, 170, 0, 0.05);
-}
-.wl-icon { font-size: 32px; filter: drop-shadow(0 0 12px rgba(255, 170, 0, 0.5)); animation: pulse 2s infinite; }
-.wl-text-wrap { flex: 1; }
-.wl-title { font-family: 'Cinzel', serif; font-size: 13px; font-weight: 700; color: var(--orange); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; text-shadow: 0 0 10px rgba(255, 170, 0, 0.3); }
-.wl-desc { font-size: 15px; color: rgba(245, 230, 200, 0.75); line-height: 1.5; }
-.wl-desc a { color: var(--gold-light); text-decoration: none; border-bottom: 1px dashed rgba(255, 224, 102, 0.5); transition: all .3s; }
-.wl-desc a:hover { color: #fff; border-bottom-color: #fff; text-shadow: 0 0 10px rgba(255, 224, 102, 0.7); }
-
 .hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;animation:fadeInUp .8s ease .4s both;}
 .btn{
   font-family:'Cinzel',serif;font-size:12px;font-weight:600;
@@ -744,8 +729,84 @@ footer{position:relative;z-index:1;text-align:center;padding:64px 40px;border-to
   .rule-severity{order:3;margin-top:6px;}
   .goat-block{padding:32px 20px;}
   nav{padding:0 18px;}
-  .whitelist-notice{ flex-direction:column; text-align:center; padding: 18px; }
 }
+
+/* ===== PLAYERS SECTION ===== */
+#players{max-width:1100px;margin:0 auto;padding:100px 40px;}
+.players-tabs{display:flex;justify-content:center;margin-bottom:40px;border:1px solid rgba(74,124,47,.3);}
+.players-tab{font-family:'Cinzel',serif;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:13px 32px;background:none;border:none;cursor:pointer;color:rgba(245,230,200,.45);transition:all .25s;flex:1;max-width:260px;position:relative;}
+.players-tab:first-child{border-right:1px solid rgba(74,124,47,.3);}
+.players-tab.active{color:var(--gold);background:rgba(240,192,64,.06);}
+.players-tab.active::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--grass),var(--gold));}
+.players-tab:hover:not(.active){color:rgba(245,230,200,.75);background:rgba(74,124,47,.06);}
+.players-panel{display:none;}.players-panel.active{display:block;}
+.online-players-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;padding-bottom:14px;border-bottom:1px solid rgba(74,124,47,.2);}
+.online-players-title{font-family:'Cinzel',serif;font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--grass-light);}
+.online-count-badge{display:inline-flex;align-items:center;gap:7px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:var(--emerald);border:1px solid rgba(0,210,106,.3);padding:5px 14px;background:rgba(0,210,106,.06);}
+.online-players-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:14px;min-height:140px;}
+.online-player-card{background:rgba(8,16,8,.75);border:1px solid rgba(74,124,47,.25);padding:18px 14px;text-align:center;transition:all .3s;display:flex;flex-direction:column;align-items:center;gap:10px;position:relative;overflow:hidden;}
+.online-player-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--emerald),transparent);opacity:0;transition:opacity .3s;}
+.online-player-card:hover{border-color:rgba(0,210,106,.45);transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,0,0,.4);}
+.online-player-card:hover::before{opacity:1;}
+.mc-avatar{image-rendering:pixelated;border:2px solid rgba(0,210,106,.3);background:#1a3a1a;}
+.online-player-name{font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:1px;color:var(--cream);word-break:break-all;}
+.online-player-status{display:inline-flex;align-items:center;gap:5px;font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--emerald);}
+.online-empty{grid-column:1/-1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:50px 20px;color:rgba(245,230,200,.3);font-family:'Cinzel',serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;}
+.online-empty-icon{font-size:38px;filter:grayscale(.6);}
+.players-refresh-btn{display:inline-flex;align-items:center;gap:8px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(0,210,106,.5);border:1px solid rgba(0,210,106,.2);padding:6px 14px;background:none;cursor:pointer;transition:all .3s;margin-top:20px;}
+.players-refresh-btn:hover{color:var(--emerald);border-color:rgba(0,210,106,.5);background:rgba(0,210,106,.05);}
+.players-refresh-btn.spinning svg{animation:spinIcon .8s linear infinite;}
+@keyframes spinIcon{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+.top-players-list{display:flex;flex-direction:column;}
+.top-player-row{display:flex;align-items:center;gap:18px;padding:18px 24px;border-bottom:1px solid rgba(74,124,47,.1);background:rgba(8,16,8,.6);transition:all .3s;position:relative;}
+.top-player-row:first-child{border-top:1px solid rgba(74,124,47,.15);}
+.top-player-row:hover{background:rgba(74,124,47,.1);border-bottom-color:rgba(0,210,106,.2);}
+.top-rank{font-family:'Cinzel',serif;font-size:13px;font-weight:900;min-width:36px;text-align:center;}
+.top-rank-1{color:#f0c040;text-shadow:0 0 14px rgba(240,192,64,.7);}
+.top-rank-2{color:#b0bec5;text-shadow:0 0 10px rgba(176,190,197,.5);}
+.top-rank-3{color:#ff8f00;text-shadow:0 0 10px rgba(255,143,0,.5);}
+.top-rank-other{color:rgba(245,230,200,.35);font-size:11px;}
+.top-player-info{flex:1;}
+.top-player-name{font-family:'Cinzel',serif;font-size:15px;font-weight:700;color:var(--cream);letter-spacing:1px;margin-bottom:4px;}
+.top-player-role{font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(245,230,200,.35);}
+.top-crown{position:absolute;top:8px;right:14px;font-size:16px;opacity:.4;}
+@media(max-width:640px){
+  .players-tabs{flex-direction:column;}
+  .players-tab{max-width:none;border-right:none!important;border-bottom:1px solid rgba(74,124,47,.3);}
+  .top-player-row{padding:12px 14px;}
+}
+
+
+.top-player-hours{display:flex;flex-direction:column;align-items:center;min-width:64px;}
+.top-hours-val{font-family:'Cinzel',serif;font-size:18px;font-weight:900;color:var(--gold);line-height:1;}
+.top-hours-lbl{font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:rgba(245,230,200,.3);margin-top:3px;}
+
+
+.top-online-badge{display:inline-flex;align-items:center;gap:4px;font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--emerald);border:1px solid rgba(0,210,106,.35);padding:2px 8px;background:rgba(0,210,106,.07);margin-left:8px;vertical-align:middle;transition:opacity .4s;}
+.top-online-badge .online-dot{width:5px;height:5px;flex-shrink:0;}
+.top-player-row.is-online{border-left:3px solid rgba(0,210,106,.5);}
+
+
+/* ===== VOTE SECTION ===== */
+#vote-section{max-width:860px;margin:0 auto;padding:100px 40px;text-align:center;}
+.vote-inner{border:1px solid rgba(240,192,64,.25);background:rgba(8,16,8,.7);padding:52px 48px;position:relative;overflow:hidden;}
+.vote-inner::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 0%,rgba(240,192,64,.06),transparent 70%);pointer-events:none;}
+.vote-icon{font-size:52px;margin-bottom:18px;filter:drop-shadow(0 0 18px rgba(240,192,64,.5));}
+.vote-title{font-family:'Cinzel',serif;font-size:22px;font-weight:900;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;text-shadow:0 0 20px rgba(240,192,64,.4);}
+.vote-text{font-size:16px;color:rgba(245,230,200,.65);line-height:1.7;max-width:560px;margin:0 auto 32px;}
+.vote-btn{display:inline-flex;align-items:center;gap:10px;font-family:'Cinzel',serif;font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;text-decoration:none;padding:16px 36px;border:2px solid var(--gold);color:var(--gold);background:rgba(240,192,64,.07);position:relative;overflow:hidden;transition:all .3s;}
+.vote-btn::before{content:'';position:absolute;inset:0;background:var(--gold);transform:translateX(-101%);transition:transform .3s ease;z-index:0;}
+.vote-btn:hover{color:#0a1a0a;box-shadow:0 0 30px rgba(240,192,64,.4);}
+.vote-btn:hover::before{transform:translateX(0);}
+.vote-btn span{position:relative;z-index:1;}
+.vote-note{margin-top:18px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(245,230,200,.25);}
+
+/* ===== MAP SECTION ===== */
+#map-section{max-width:1200px;margin:0 auto;padding:100px 40px;}
+.map-frame-wrap{position:relative;width:100%;padding-bottom:56.25%;border:1px solid rgba(74,124,47,.3);background:#0a1a0a;overflow:hidden;}
+.map-frame-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;}
+.map-overlay-hint{text-align:center;margin-top:14px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(245,230,200,.2);}
+
 </style>
 </head>
 <body>
@@ -811,6 +872,9 @@ footer{position:relative;z-index:1;text-align:center;padding:64px 40px;border-to
     <li><a href="#donors" style="color:var(--gold);border-color:rgba(240,192,64,.2);">💎 Донатеры</a></li>
     <li><a href="#rules" class="rules-btn">📜 Правила</a></li>
     <li><a href="https://t.me/kozlocraft" target="_blank">Telegram</a></li>
+    <li><a href="#players" style="color:var(--blue);">&#128101; Игроки</a></li>
+    <li><a href="#vote-section" style="color:var(--gold);">&#128077; Голосование</a></li>
+    <li><a href="#map-section" style="color:var(--emerald);">&#127758; Карта</a></li>
   </ul>
 </nav>
 
@@ -829,14 +893,6 @@ footer{position:relative;z-index:1;text-align:center;padding:64px 40px;border-to
       <div class="ip-sep"></div>
       <div class="ip-label">Доменное имя</div>
       <div class="ip-value" onclick="copyIP('kozlocraft.join-mc.net')">kozlocraft.join-mc.net</div>
-    </div>
-    
-    <div class="whitelist-notice">
-      <div class="wl-icon">🔒</div>
-      <div class="wl-text-wrap">
-        <div class="wl-title">На сервере включен WhiteList</div>
-        <div class="wl-desc">Чтобы зайти на сервер, подай заявку через <a href="https://t.me/kozlocraft_support_bot" target="_blank">Telegram-бота</a> или напиши нам на <a href="mailto:kozlocraft2@gmail.com">почту</a>.</div>
-      </div>
     </div>
 
     <div class="hero-online-wrap">
@@ -1429,6 +1485,76 @@ footer{position:relative;z-index:1;text-align:center;padding:64px 40px;border-to
   </div>
 </section>
 
+<section id="players">
+  <h2 class="section-title fade-in">Игроки сервера</h2>
+  <div class="section-divider fade-in">
+    <div class="divider-line"></div><div class="divider-gem"></div><div class="divider-line"></div>
+  </div>
+  <div class="players-tabs fade-in">
+    <button class="players-tab active" id="tab-online" onclick="switchPlayersTab('online')">&#127810; Онлайн сейчас</button>
+    <button class="players-tab" id="tab-top" onclick="switchPlayersTab('top')">&#127942; Топ игроков</button>
+  </div>
+
+  <div id="players-online-panel" class="players-panel active">
+    <div class="online-players-header">
+      <div class="online-players-title">Сейчас в игре</div>
+      <div class="online-count-badge"><span class="online-dot"></span><span id="online-panel-count">загрузка...</span></div>
+    </div>
+    <div class="online-players-grid" id="online-players-grid">
+      <div class="online-empty"><div class="online-empty-icon">&#9203;</div><div>Загружаем список...</div></div>
+    </div>
+    <div style="text-align:center;">
+      <button class="players-refresh-btn" id="refresh-btn" onclick="refreshOnlinePlayers()">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 4v6h6M23 20v-6h-6"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>
+        Обновить
+      </button>
+    </div>
+  </div>
+
+  <div id="players-top-panel" class="players-panel">
+    <div class="top-players-list" id="top-players-list">
+      <div class="online-empty"><div class="online-empty-icon">&#9203;</div><div>Загружаем топ...</div></div>
+    </div></div>
+  </div>
+</section>
+
+<section id="vote-section">
+  <h2 class="section-title fade-in">Поддержи проект</h2>
+  <div class="section-divider fade-in">
+    <div class="divider-line"></div><div class="divider-gem"></div><div class="divider-line"></div>
+  </div>
+  <div class="vote-inner fade-in">
+    <div class="vote-icon">&#128077;</div>
+    <div class="vote-title">Проголосуй за KozloCraft</div>
+    <p class="vote-text">
+      Твой голос даёт нам мотивацию развиваться и становиться лучше.
+      Благодаря голосованию нас находят новые игроки —
+      помоги серверу расти!
+    </p>
+    <a class="vote-btn" href="https://misterlauncher.org/vote/96903/" target="_blank" rel="noopener">
+      <span>&#9733; Проголосовать на MisterLauncher</span>
+    </a>
+    <div class="vote-note">Голосование обновляется каждые 12 часов · спасибо, что с нами</div>
+  </div>
+</section>
+
+<section id="map-section">
+  <h2 class="section-title fade-in">Карта сервера</h2>
+  <div class="section-divider fade-in">
+    <div class="divider-line"></div><div class="divider-gem"></div><div class="divider-line"></div>
+  </div>
+  <div class="map-frame-wrap fade-in">
+    <iframe
+      src="http://65.108.21.147:25715/"
+      title="KozloCraft Map"
+      loading="lazy"
+      allow="fullscreen"
+      allowfullscreen>
+    </iframe>
+  </div>
+  <div class="map-overlay-hint fade-in">Интерактивная карта · скролл для зума · перетащи для перемещения</div>
+</section>
+
 <section id="goat-section">
   <div class="goat-block fade-in">
     <div class="big-goat-wrap">
@@ -1496,6 +1622,7 @@ footer{position:relative;z-index:1;text-align:center;padding:64px 40px;border-to
           <h2>Устав KozloCraft</h2>
           <p>Прочти и соблюдай — залог честной игры</p>
         </div>
+      <div class="top-player-hours"><div class="top-hours-val">??</div><div class="top-hours-lbl">Часов</div></div>
       </div>
       <div class="rules-body">
 
@@ -1745,6 +1872,9 @@ footer{position:relative;z-index:1;text-align:center;padding:64px 40px;border-to
     <a href="#commands">Навигация</a>
     <a href="#shop">Магазин</a>
     <a href="#donors">Донатеры</a>
+    <a href="#players">Игроки</a>
+    <a href="#vote-section">Голосование</a>
+    <a href="#map-section">Карта</a>
     <a href="#goat-section">Козёл</a>
     <a href="#rules">Правила</a>
     <a href="https://t.me/kozlocraft" target="_blank">Telegram</a>
@@ -1969,6 +2099,146 @@ async function fetchServerOnline(){
 }
 fetchServerOnline();
 setInterval(fetchServerOnline, 60000);
+
+/* ===== PLAYERS SECTION ===== */
+function switchPlayersTab(tab) {
+  document.querySelectorAll('.players-tab').forEach(function(t) { t.classList.remove('active'); });
+  document.querySelectorAll('.players-panel').forEach(function(p) { p.classList.remove('active'); });
+  document.getElementById('tab-' + tab).classList.add('active');
+  document.getElementById('players-' + tab + '-panel').classList.add('active');
+}
+
+function buildOnlineGrid(list, isOnline) {
+  var grid = document.getElementById('online-players-grid');
+  var badge = document.getElementById('online-panel-count');
+  if (!grid) return;
+  if (!isOnline || !list || !list.length) {
+    var icon = isOnline ? '\u{1F634}' : '\u{1F534}';
+    var msg = isOnline ? 'Нет игроков онлайн' : 'Сервер офлайн';
+    grid.innerHTML = '<div class="online-empty"><div class="online-empty-icon">' + icon + '</div><div>' + msg + '</div></div>';
+    if (badge) badge.textContent = isOnline ? '0 игроков' : 'Офлайн';
+    return;
+  }
+  var n = list.length;
+  if (badge) badge.textContent = n + ' ' + (n === 1 ? 'игрок' : n < 5 ? 'игрока' : 'игроков');
+  var rows = '';
+  for (var i = 0; i < list.length; i++) {
+    var p = list[i];
+    var name = (typeof p === 'object') ? (p.name || '') : String(p);
+    if (!name) continue;
+    var av = 'https://mc-heads.net/avatar/' + encodeURIComponent(name) + '/52';
+    rows += '<div class="online-player-card">'
+      + '<img class="mc-avatar" width="52" height="52" src="' + av + '" alt="' + name + '" loading="lazy">'
+      + '<div class="online-player-name">' + name + '</div>'
+      + '<div class="online-player-status"><span class="online-dot"></span>В игре</div>'
+      + '</div>';
+  }
+  grid.innerHTML = rows;
+}
+
+async function refreshOnlinePlayers() {
+  var btn = document.getElementById('refresh-btn');
+  if (btn) btn.classList.add('spinning');
+  var IP = '213.152.43.78', PORT = '25814', list = [], online = false;
+  try {
+    var r = await fetch('https://api.mcsrvstat.us/3/' + IP + ':' + PORT);
+    if (r.ok) {
+      var d = await r.json();
+      online = !!d.online;
+      list = (d.players && d.players.list) ? d.players.list : [];
+    }
+  } catch(e) {
+    try {
+      var r2 = await fetch('https://mcapi.us/server/status?ip=' + IP + '&port=' + PORT);
+      if (r2.ok) { var d2 = await r2.json(); online = d2.online === true; }
+    } catch(e2) {}
+  }
+  buildOnlineGrid(list, online);
+  updateTopOnlineBadges(list);
+  if (btn) btn.classList.remove('spinning');
+}
+setTimeout(refreshOnlinePlayers, 2500);
+setInterval(refreshOnlinePlayers, 60000);
+
+
+
+/* ===== DYNAMIC TOP PLAYERS (from players.json) ===== */
+var gTopPlayers = [];
+var gOnlineNames = [];
+
+/* ============================================================
+   ТОП ИГРОКОВ — обновляй часы прямо здесь!
+   hours: 312  ← поставь реальное кол-во часов
+   ============================================================ */
+var KOZLOCRAFT_PLAYERS = [
+  { name: 'Egoridze',    role: 'Меценат · Ветеран', hours: 0 },
+  { name: 'x_Tata_x',   role: 'Меценат',               hours: 0 },
+  { name: 'murMyau_luv', role: 'Меценат',               hours: 0 },
+  { name: 'xxxchicha',   role: 'Меценат',               hours: 0 }
+];
+
+function loadTopPlayers() {
+  gTopPlayers = KOZLOCRAFT_PLAYERS.slice();
+  renderTopPlayers();
+}
+
+function renderTopPlayers() {
+  var el = document.getElementById('top-players-list');
+  if (!el || !gTopPlayers.length) return;
+  var medals = ['&#129351;','&#129352;','&#129353;'];
+  var rankCls = ['top-rank-1','top-rank-2','top-rank-3','top-rank-other'];
+  var html = '';
+  for (var i = 0; i < gTopPlayers.length; i++) {
+    var p = gTopPlayers[i];
+    var isOnline = gOnlineNames.indexOf(p.name) !== -1;
+    var rankLabel = i < 3 ? medals[i] : ('#' + (i+1));
+    var crownHtml = i === 0 ? '<div class="top-crown">&#128081;</div>' : '';
+    var hoursHtml = (p.hours !== null && p.hours !== undefined)
+      ? '<div class="top-player-hours"><div class="top-hours-val">' + p.hours + '</div><div class="top-hours-lbl">Часов</div></div>'
+      : '';
+    var badgeHtml = isOnline
+      ? '<span class="top-online-badge"><span class="online-dot"></span>онлайн</span>'
+      : '';
+    var av = 'https://mc-heads.net/avatar/' + encodeURIComponent(p.name) + '/44';
+    var rowCls = 'top-player-row' + (isOnline ? ' is-online' : '');
+    html += '<div class="' + rowCls + '">'
+      + '<div class="top-rank ' + rankCls[Math.min(i,3)] + '">' + rankLabel + '</div>'
+      + '<img class="mc-avatar" width="44" height="44" src="' + av + '" alt="' + p.name + '">'
+      + '<div class="top-player-info">'
+      +   '<div class="top-player-name">' + p.name + ' ' + badgeHtml + '</div>'
+      +   '<div class="top-player-role">' + (p.role || '') + '</div>'
+      + '</div>'
+      + hoursHtml
+      + crownHtml
+      + '</div>';
+  }
+  el.innerHTML = html;
+}
+
+function updateTopOnlineBadges(onlineList) {
+  gOnlineNames = [];
+  if (onlineList) {
+    for (var i = 0; i < onlineList.length; i++) {
+      var p = onlineList[i];
+      gOnlineNames.push(typeof p === 'object' ? (p.name || '') : String(p));
+    }
+  }
+  renderTopPlayers();
+}
+
+// Sort top players by hours desc whenever data changes
+function sortAndRender() {
+  gTopPlayers.sort(function(a,b) {
+    var ah = (a.hours !== null && a.hours !== undefined) ? Number(a.hours) : -1;
+    var bh = (b.hours !== null && b.hours !== undefined) ? Number(b.hours) : -1;
+    return bh - ah;
+  });
+  renderTopPlayers();
+}
+
+loadTopPlayers();
+// Данные встроены в HTML — обновляй KOZLOCRAFT_PLAYERS выше
+
 </script>
 </body>
 </html>
