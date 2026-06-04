@@ -803,8 +803,49 @@ footer{position:relative;z-index:1;text-align:center;padding:64px 40px;border-to
 
 /* ===== MAP SECTION ===== */
 #map-section{max-width:1200px;margin:0 auto;padding:100px 40px;}
-.map-frame-wrap{position:relative;width:100%;padding-bottom:56.25%;border:1px solid rgba(74,124,47,.3);background:#0a1a0a;overflow:hidden;}
+.map-outer{position:relative;width:100%;border:2px solid rgba(74,124,47,.35);background:#050e05;overflow:hidden;box-shadow:0 0 60px rgba(0,0,0,.5),inset 0 0 40px rgba(0,0,0,.3);}
+.map-outer::before,.map-outer::after{content:'';position:absolute;width:14px;height:14px;background:var(--gold);z-index:10;}
+.map-outer::before{top:-2px;left:-2px;}
+.map-outer::after{bottom:-2px;right:-2px;}
+.map-frame-wrap{position:relative;width:100%;padding-bottom:58%;background:#0a1a0a;overflow:hidden;}
 .map-frame-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;}
+.map-offline-block{
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:18px;
+  background:radial-gradient(ellipse at 50% 60%,rgba(74,124,47,.08),transparent 70%),#060e06;
+}
+.map-offline-icon{font-size:56px;filter:drop-shadow(0 0 20px rgba(74,124,47,.3));animation:goatBob 2s ease-in-out infinite alternate;}
+.map-offline-title{font-family:'Cinzel',serif;font-size:18px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);text-shadow:0 0 20px rgba(240,192,64,.4);}
+.map-offline-sub{font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(245,230,200,.35);margin-top:-8px;}
+.map-open-btn{
+  font-family:'Cinzel',serif;font-size:12px;font-weight:600;
+  letter-spacing:3px;text-transform:uppercase;text-decoration:none;
+  padding:14px 32px;cursor:pointer;border:2px solid var(--emerald);
+  color:var(--emerald);background:rgba(0,210,106,.06);
+  position:relative;overflow:hidden;transition:all .3s;display:inline-flex;align-items:center;gap:10px;
+}
+.map-open-btn::before{content:'';position:absolute;inset:0;transform:translateX(-101%);transition:transform .3s ease;background:var(--emerald);}
+.map-open-btn:hover::before{transform:translateX(0);}
+.map-open-btn:hover{color:#000;box-shadow:0 0 30px rgba(0,210,106,.4);}
+.map-open-btn span{position:relative;z-index:1;display:flex;align-items:center;gap:10px;}
+.map-coords-hint{font-family:'Courier New',monospace;font-size:11px;color:rgba(245,230,200,.2);letter-spacing:1px;margin-top:4px;}
+.map-loading-bar{
+  position:absolute;top:0;left:0;right:0;height:3px;z-index:20;
+  background:linear-gradient(90deg,var(--grass),var(--gold),var(--emerald));
+  transform-origin:left;animation:mapLoadBar 2s ease-in-out infinite alternate;
+  display:none;
+}
+@keyframes mapLoadBar{from{transform:scaleX(.1);}to{transform:scaleX(1);}}
+.map-loaded .map-loading-bar{display:none!important;}
+.map-checking .map-loading-bar{display:block;}
+.map-status-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;
+  text-transform:uppercase;padding:6px 18px;margin-top:2px;
+  border:1px solid rgba(74,124,47,.3);background:rgba(8,16,8,.6);
+}
+.map-status-badge.online{color:var(--emerald);border-color:rgba(0,210,106,.3);}
+.map-status-badge.offline{color:rgba(255,68,68,.8);border-color:rgba(255,68,68,.25);}
 .map-overlay-hint{text-align:center;margin-top:14px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(245,230,200,.2);}
 
 </style>
@@ -1538,18 +1579,23 @@ footer{position:relative;z-index:1;text-align:center;padding:64px 40px;border-to
   <div class="section-divider fade-in">
     <div class="divider-line"></div><div class="divider-gem"></div><div class="divider-line"></div>
   </div>
-  
-<div class="map-frame-wrap fade-in">
-<iframe
-src="http://65.108.21.147:25715/"
-width="100%"
-height="100%"
-frameborder="0"
-loading="lazy"
-allowfullscreen>
-</iframe>
-</div>
 
+  <div class="map-outer fade-in" id="map-outer">
+    <div class="map-loading-bar" id="map-loading-bar"></div>
+    <div class="map-frame-wrap" id="map-frame-wrap">
+      <!-- iframe вставляется динамически если карта доступна -->
+      <div class="map-offline-block" id="map-offline-block">
+        <div class="map-offline-icon">🗺️</div>
+        <div class="map-offline-title">Карта мира</div>
+        <div class="map-offline-sub" id="map-status-text">Проверяем доступность…</div>
+        <a href="http://65.108.21.147:25715/" target="_blank" rel="noopener" class="map-open-btn" id="map-open-btn">
+          <span>🌍 Открыть карту</span>
+        </a>
+        <div class="map-coords-hint" id="map-coords-hint"></div>
+      </div>
+    </div>
+  </div>
+  <div class="map-overlay-hint">BlueMap · Интерактивная 3D карта KozloCraft</div>
 </section>
 
 <section id="goat-section">
@@ -2233,8 +2279,63 @@ function sortAndRender() {
   renderTopPlayers();
 }
 
-loadTopPlayers();
-// Данные встроены в HTML — обновляй KOZLOCRAFT_PLAYERS выше
+
+/* ===== MAP SECTION ===== */
+(function() {
+  var MAP_URL = 'http://65.108.21.147:25715/';
+  var outer   = document.getElementById('map-outer');
+  var wrap    = document.getElementById('map-frame-wrap');
+  var offline = document.getElementById('map-offline-block');
+  var statusTxt = document.getElementById('map-status-text');
+  var loadBar = document.getElementById('map-loading-bar');
+
+  function showOffline(msg) {
+    if (statusTxt) statusTxt.textContent = msg || 'Карта временно недоступна';
+    if (offline) offline.style.display = 'flex';
+    if (loadBar) loadBar.style.display = 'none';
+    if (outer)   outer.classList.remove('map-checking');
+  }
+
+  function showOnline() {
+    if (offline) offline.style.display = 'none';
+    // Вставляем iframe
+    var ifr = document.createElement('iframe');
+    ifr.src = MAP_URL;
+    ifr.setAttribute('frameborder', '0');
+    ifr.setAttribute('allowfullscreen', '');
+    ifr.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;border:none;';
+    ifr.onload = function() {
+      if (loadBar) loadBar.style.display = 'none';
+      if (outer)   outer.classList.add('map-loaded');
+    };
+    if (wrap) wrap.appendChild(ifr);
+    if (loadBar) loadBar.style.display = 'block';
+    if (outer)   outer.classList.add('map-checking');
+  }
+
+  // Проверяем карту через img-ping (не зависит от CORS)
+  function checkMap() {
+    var img = new Image();
+    var timer = setTimeout(function() {
+      img.src = '';
+      showOffline('Карта сейчас недоступна · Попробуй открыть напрямую');
+    }, 6000);
+    img.onload = function() {
+      clearTimeout(timer);
+      showOnline();
+    };
+    img.onerror = function() {
+      clearTimeout(timer);
+      // onerror на корне — скорее всего CORS или оффлайн
+      // Пробуем /favicon.ico или просто показываем кнопку
+      showOffline('Карта работает · Открой в новой вкладке (HTTP)');
+    };
+    // Некоторые BlueMap серверы раздают /assets/favicon.png
+    img.src = MAP_URL + 'assets/favicon.png?' + Date.now();
+  }
+
+  checkMap();
+})();
 
 </script>
 </body>
